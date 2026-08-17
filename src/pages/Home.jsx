@@ -134,11 +134,18 @@ export function Home({ onNavigate, onSelectService }) {
               className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-4/5 rounded-t-full"
               style={{ background: 'var(--gradient-glow)' }}
             />
-            <img
-              src="/assets/ceo-1.png"
-              alt="Moniqui Borges, fundadora da Orium Digital"
-              className="mx-auto w-full max-w-sm drop-shadow-[0_30px_60px_rgba(122,31,255,0.35)] lg:max-w-md transition-transform hover:scale-[1.02] duration-500"
-            />
+            <picture>
+              <source type="image/webp" srcSet="/assets/ceo-1.webp" />
+              <img
+                src="/assets/ceo-1.png"
+                alt="Moniqui Borges, fundadora da Orium Digital"
+                width="450"
+                height="550"
+                fetchPriority="high"
+                decoding="async"
+                className="mx-auto w-full max-w-sm drop-shadow-[0_30px_60px_rgba(122,31,255,0.35)] lg:max-w-md transition-transform hover:scale-[1.02] duration-500"
+              />
+            </picture>
           </Reveal>
         </div>
       </section>
@@ -312,8 +319,8 @@ export function Home({ onNavigate, onSelectService }) {
                     </h3>
 
                     {/* Metric Tag */}
-                    <div className="mt-2 inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 text-[11px] font-semibold text-primary-glow">
-                      <CheckCircle2 className="h-3 w-3" />
+                    <div className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary-glow">
+                      <CheckCircle2 className="h-3.5 w-3.5" />
                       {client.metric}
                     </div>
                   </div>
@@ -345,11 +352,18 @@ export function Home({ onNavigate, onSelectService }) {
               className="pointer-events-none absolute inset-0 -z-10 rounded-full"
               style={{ background: 'var(--gradient-glow)' }}
             />
-            <img
-              src="/assets/ceo-2.png"
-              alt="Moniqui Borges, estrategista de marketing digital e fundadora da Orium Digital"
-              className="w-full drop-shadow-[0_30px_60px_rgba(122,31,255,0.3)] transition-transform hover:scale-105 duration-500"
-            />
+            <picture>
+              <source type="image/webp" srcSet="/assets/ceo-2.webp" />
+              <img
+                src="/assets/ceo-2.png"
+                alt="Moniqui Borges, estrategista de marketing digital e fundadora da Orium Digital"
+                width="450"
+                height="550"
+                loading="lazy"
+                decoding="async"
+                className="w-full drop-shadow-[0_30px_60px_rgba(122,31,255,0.3)] transition-transform hover:scale-105 duration-500"
+              />
+            </picture>
           </Reveal>
 
           <Reveal className="order-1 lg:order-2">

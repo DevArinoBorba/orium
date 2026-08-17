@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 export function SpotlightCard({
   children,
   className = '',
-  spotlightColor = 'rgba(122, 31, 255, 0.15)',
+  spotlightColor = 'color-mix(in oklab, var(--primary) 18%, transparent)',
   onClick,
 }) {
   const cardRef = useRef(null);

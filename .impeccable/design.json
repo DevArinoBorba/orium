@@ -1,0 +1,229 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-17T11:35:30.000Z",
+  "title": "Design System: Orium Digital",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Electric Nebula Violet",
+        "canonical": "oklch(54.5% 0.28 295)",
+        "tonalRamp": [
+          "oklch(20% 0.15 295)",
+          "oklch(32% 0.22 295)",
+          "oklch(44% 0.26 295)",
+          "oklch(54.5% 0.28 295)",
+          "oklch(66% 0.24 296)",
+          "oklch(78% 0.18 296)",
+          "oklch(88% 0.10 296)",
+          "oklch(95% 0.04 296)"
+        ]
+      },
+      "primary-glow": {
+        "role": "primary",
+        "displayName": "Luminous Violet Glow",
+        "canonical": "oklch(66% 0.24 296)",
+        "tonalRamp": [
+          "oklch(25% 0.12 296)",
+          "oklch(38% 0.18 296)",
+          "oklch(52% 0.22 296)",
+          "oklch(66% 0.24 296)",
+          "oklch(76% 0.18 296)",
+          "oklch(85% 0.12 296)",
+          "oklch(92% 0.06 296)",
+          "oklch(97% 0.02 296)"
+        ]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Obsidian Cosmos",
+        "canonical": "oklch(13% 0 0)",
+        "tonalRamp": [
+          "oklch(10% 0 0)",
+          "oklch(13% 0 0)",
+          "oklch(17% 0.01 300)",
+          "oklch(21% 0.02 300)",
+          "oklch(35% 0.01 300)",
+          "oklch(55% 0.01 300)",
+          "oklch(75% 0.01 84.6)",
+          "oklch(96.2% 0.008 84.6)"
+        ]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Snow White Text",
+        "canonical": "oklch(96.2% 0.008 84.6)",
+        "tonalRamp": [
+          "oklch(20% 0.01 84.6)",
+          "oklch(35% 0.01 84.6)",
+          "oklch(50% 0.01 84.6)",
+          "oklch(68% 0.015 84.6)",
+          "oklch(80% 0.01 84.6)",
+          "oklch(90% 0.008 84.6)",
+          "oklch(96.2% 0.008 84.6)",
+          "oklch(99% 0.002 84.6)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Midnight Glass Surface",
+        "canonical": "oklch(17% 0.01 300)",
+        "tonalRamp": [
+          "oklch(11% 0 0)",
+          "oklch(14% 0.005 300)",
+          "oklch(17% 0.01 300)",
+          "oklch(21% 0.02 300)",
+          "oklch(26% 0.06 298)",
+          "oklch(40% 0.04 298)",
+          "oklch(60% 0.02 298)",
+          "oklch(85% 0.01 298)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Sora Display",
+        "purpose": "Hero headlines and primary impact numbers."
+      },
+      "headline": {
+        "displayName": "Sora Headline",
+        "purpose": "Section headers and primary division titles."
+      },
+      "title": {
+        "displayName": "Sora Title",
+        "purpose": "Card titles, service names, and step headers."
+      },
+      "body": {
+        "displayName": "Manrope Body",
+        "purpose": "Continuous copy, explanatory descriptions, and FAQ text."
+      },
+      "label": {
+        "displayName": "Manrope Label",
+        "purpose": "Badges, metadata tags, and metric subtitles."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-glow",
+        "value": "0 0 60px -12px color-mix(in oklab, oklch(54.5% 0.28 295) 55%, transparent)",
+        "purpose": "Atmospheric violet glow on hero buttons and featured cards."
+      },
+      {
+        "name": "shadow-elegant",
+        "value": "0 20px 50px -20px color-mix(in oklab, oklch(54.5% 0.28 295) 35%, transparent)",
+        "purpose": "Subtle deep drop-shadow for suspended modals and glass panels."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-reveal",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Smooth upward reveal animation for sections and cards on scroll."
+      },
+      {
+        "name": "ease-hover",
+        "value": "ease",
+        "purpose": "Quick 0.25s response on button hover, scale, and luminescence."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Hero Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Botão principal de conversão para agendamento via WhatsApp.",
+      "html": "<button class=\"ds-btn-hero\"><svg class=\"ds-btn-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"></path></svg>Agendar consultoria</button>",
+      "css": ".ds-btn-hero { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, oklch(54.5% 0.28 295), oklch(37% 0.2 300)); color: oklch(98.5% 0.005 84.6); font-family: 'Manrope', system-ui, sans-serif; font-size: 14px; font-weight: 600; padding: 12px 24px; border: none; border-radius: 9999px; cursor: pointer; box-shadow: 0 0 60px -12px rgba(122, 31, 255, 0.55); transition: transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease; text-decoration: none; } .ds-btn-hero:hover { transform: translateY(-2px); filter: brightness(1.12); box-shadow: 0 0 80px -8px rgba(122, 31, 255, 0.65); } .ds-btn-icon { width: 16px; height: 16px; }"
+    },
+    {
+      "name": "Outline Hero Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Botão secundário translúcido para ações informativas e navegação.",
+      "html": "<button class=\"ds-btn-outline\"><svg class=\"ds-btn-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"5 3 19 12 5 21 5 3\"></polygon></svg>Conhecer Serviços</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: rgba(255, 255, 255, 0.04); color: oklch(96.2% 0.008 84.6); font-family: 'Manrope', system-ui, sans-serif; font-size: 14px; font-weight: 600; padding: 12px 24px; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 9999px; cursor: pointer; transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease; text-decoration: none; } .ds-btn-outline:hover { transform: translateY(-2px); border-color: oklch(54.5% 0.28 295); background: rgba(122, 31, 255, 0.12); } .ds-btn-icon { width: 16px; height: 16px; }"
+    },
+    {
+      "name": "Spotlight Glass Card",
+      "kind": "card",
+      "refersTo": "card-surface",
+      "description": "Card interativo com efeito vidro e resposta de luz ao cursor.",
+      "html": "<div class=\"ds-spotlight-card\"><div class=\"ds-card-badge\">Tráfego Pago</div><h3 class=\"ds-card-title\">Gestão de Tráfego Pago</h3><p class=\"ds-card-desc\">Google Ads, Meta Ads e TikTok Ads com foco em leads qualificados e crescimento previsível.</p></div>",
+      "css": ".ds-spotlight-card { position: relative; overflow: hidden; background: oklch(17% 0.01 300); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 24px; backdrop-filter: blur(18px); font-family: 'Manrope', system-ui, sans-serif; } .ds-card-badge { display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: oklch(66% 0.24 296); background: rgba(122, 31, 255, 0.15); border: 1px solid rgba(122, 31, 255, 0.3); border-radius: 9999px; padding: 4px 12px; margin-bottom: 12px; } .ds-card-title { font-family: 'Sora', system-ui, sans-serif; font-size: 18px; font-weight: 700; color: oklch(96.2% 0.008 84.6); margin: 0 0 8px 0; } .ds-card-desc { font-size: 14px; line-height: 1.6; color: oklch(68% 0.015 84.6); margin: 0; }"
+    },
+    {
+      "name": "Badge Chip",
+      "kind": "chip",
+      "refersTo": "chip-badge",
+      "description": "Tag de categoria e rastreador de status do sistema.",
+      "html": "<span class=\"ds-chip-badge\"><svg class=\"ds-chip-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z\"></path></svg>Simulador de Crescimento</span>",
+      "css": ".ds-chip-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(122, 31, 255, 0.18); border: 1px solid rgba(122, 31, 255, 0.4); border-radius: 9999px; padding: 6px 16px; color: oklch(66% 0.24 296); font-family: 'Manrope', system-ui, sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; } .ds-chip-icon { width: 14px; height: 14px; }"
+    },
+    {
+      "name": "Dark Form Input",
+      "kind": "input",
+      "refersTo": "card-surface",
+      "description": "Campo de texto e seleção adaptado ao tema escuro.",
+      "html": "<div class=\"ds-input-group\"><label class=\"ds-input-label\">Seu nome ou empresa</label><input type=\"text\" class=\"ds-input-field\" placeholder=\"Ex: Mariana Borges Studio\" /></div>",
+      "css": ".ds-input-group { display: flex; flex-direction: column; gap: 6px; font-family: 'Manrope', system-ui, sans-serif; } .ds-input-label { font-size: 13px; font-weight: 600; color: oklch(96.2% 0.008 84.6); } .ds-input-field { background: oklch(17% 0.01 300); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 12px; padding: 12px 16px; color: oklch(96.2% 0.008 84.6); font-size: 14px; outline: none; transition: border-color 0.2s; } .ds-input-field:focus { border-color: oklch(54.5% 0.28 295); box-shadow: 0 0 0 2px rgba(122, 31, 255, 0.25); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Nebula Precision",
+    "overview": "O sistema visual da Orium Digital foi construído para transmitir a fusão exata entre profundidade estratégica, autoridade de mercado e inovação tecnológica. Adota uma atmosfera predominantemente escura (obsidian dark), pontuada por acentos luminosos em roxo elétrico, painéis translúcidos em glassmorphism e micro-interações de alta resposta tátil.",
+    "keyCharacteristics": [
+      "Atmosfera Cósmica Sofisticada com fundo oklch(13% 0 0)",
+      "Roxo Nebular de Alto Contraste para ações e métricas",
+      "Glassmorphism com desfoque de 18px e bordas ultrafinas de 1px",
+      "Interatividade Tátil e Iluminação Direcionada em SpotlightCards"
+    ],
+    "rules": [
+      {
+        "name": "The 10% Luminous Accent Rule",
+        "body": "O roxo primário e seus brilhos nunca devem cobrir mais de 10% da área útil da viewport. Sua força reside no contraste com a vastidão escura.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ghost Border Rule",
+        "body": "Nenhum card ou container flutuante deve existir sem sua borda perimetral de 1px com transparência de 10% a 15%.",
+        "section": "colors"
+      },
+      {
+        "name": "The Dual-Font Authority Rule",
+        "body": "Todo título estrutural (H1 a H4) utiliza obrigatoriamente a família Sora; todo texto de parágrafo, botão, rótulo e metadado utiliza Manrope.",
+        "section": "typography"
+      },
+      {
+        "name": "The Luminescence Over Shadow Rule",
+        "body": "A profundidade no tema escuro é criada pela luz emitida (halos roxos) e pela translucidez com desfoque, nunca por sombras pretas opacas.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Spotlight Interactive Rule",
+        "body": "Todo card interativo deve responder à posição do mouse com um gradiente radial suave em tom violeta.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do manter o fundo estritamente no tom escuro profundo (oklch(13% 0 0)).",
+      "Do utilizar a família tipográfica Sora exclusivamente em títulos e Manrope para o corpo.",
+      "Do aplicar o efeito de halo luminoso violeta apenas em botões principais de ação e pontos de conversão.",
+      "Do envolver todo card interativo no padrão SpotlightCard para resposta tátil contínua.",
+      "Do garantir que todos os links de conversão via WhatsApp incluam mensagens contextualizadas."
+    ],
+    "donts": [
+      "Don't utilizar fundos brancos ou cinzas claros em páginas ou seções globais.",
+      "Don't aplicar gradientes roxos em textos de parágrafo longos.",
+      "Don't empregar sombras pretas duras e opacas em containers flutuantes.",
+      "Don't utilizar cantos pontiagudos ou retos em botões e cards de destaque.",
+      "Don't remover os atributos semânticos de acessibilidade e foco visível dos elementos interativos."
+    ]
+  }
+}

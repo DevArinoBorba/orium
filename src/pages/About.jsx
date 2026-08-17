@@ -38,11 +38,18 @@ export function About() {
                 className="pointer-events-none absolute inset-0 -z-10 rounded-full"
                 style={{ background: 'var(--gradient-glow)' }}
               />
-              <img
-                src="/assets/ceo-2.png"
-                alt="Moniqui Borges, fundadora da Orium Digital"
-                className="w-full drop-shadow-[0_30px_60px_rgba(122,31,255,0.3)] transition-transform hover:scale-105 duration-500"
-              />
+              <picture>
+                <source type="image/webp" srcSet="/assets/ceo-2.webp" />
+                <img
+                  src="/assets/ceo-2.png"
+                  alt="Moniqui Borges, fundadora da Orium Digital"
+                  width="450"
+                  height="550"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full drop-shadow-[0_30px_60px_rgba(122,31,255,0.3)] transition-transform hover:scale-105 duration-500"
+                />
+              </picture>
               <div className="glass-panel mt-6 rounded-2xl p-5 text-center">
                 <p className="font-display font-semibold text-lg text-foreground">
                   Moniqui Borges

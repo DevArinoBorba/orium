@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calculator, ArrowRight, TrendingUp, Users, Eye, Sparkles } from 'lucide-react';
+import { Calculator, ArrowRight, TrendingUp, Users, Eye, Sparkles, Copy, Check } from 'lucide-react';
 import { Reveal } from './Reveal';
 import { getWhatsAppLink } from '../data/siteData';
 
@@ -54,6 +54,7 @@ const niches = [
 export function TrafficCalculator() {
   const [budget, setBudget] = useState(3000);
   const [selectedNicheId, setSelectedNicheId] = useState(niches[0].id);
+  const [copied, setCopied] = useState(false);
 
   const niche = niches.find((n) => n.id === selectedNicheId) || niches[0];
 
@@ -65,8 +66,15 @@ export function TrafficCalculator() {
   const potentialMax = Math.round(budget * niche.roasMax);
 
   const handleWhatsAppShare = () => {
-    const msg = `Olá, vim pelo site da Orium Digital e fiz uma simulação na Calculadora de Tráfego:\n\n• Segmento: ${niche.name}\n• Investimento pretendido: R$ ${budget.toLocaleString('pt-BR')}/mês\n• Estimativa de Leads: ${estimatedLeads} leads/mês\n\nQuero agendar uma consultoria gratuita para montar esse plano para a minha empresa!`;
+    const msg = `Olá, vim pelo site da Orium Digital e fiz uma simulação na Calculadora de Tráfego:\n\n• Segmento: ${niche.name}\n• Investimento pretendido: R$ ${budget.toLocaleString('pt-BR')}/mês\n• Estimativa de Leads: ${estimatedLeads} leads/mês\n• Potencial de Faturamento: R$ ${potentialMin.toLocaleString('pt-BR')} a R$ ${potentialMax.toLocaleString('pt-BR')}\n\nQuero agendar uma consultoria gratuita para montar esse plano para a minha empresa!`;
     window.open(getWhatsAppLink(msg), '_blank', 'noopener,noreferrer');
+  };
+
+  const handleCopySimulation = () => {
+    const text = `Simulação de Tráfego - Orium Digital\n• Segmento: ${niche.name}\n• Investimento: R$ ${budget.toLocaleString('pt-BR')}/mês\n• Alcance: ~${estimatedReach.toLocaleString('pt-BR')} pessoas\n• Cliques: ~${estimatedClicks.toLocaleString('pt-BR')} visitas\n• Oportunidades: ~${estimatedLeads} leads/mês\n• Faturamento Estimado: R$ ${potentialMin.toLocaleString('pt-BR')} a R$ ${potentialMax.toLocaleString('pt-BR')}`;
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2200);
   };
 
   return (
@@ -101,13 +109,14 @@ export function TrafficCalculator() {
           <Reveal>
             <div className="glass-panel h-full rounded-3xl p-6 sm:p-8 space-y-6">
               <div>
-                <label className="block text-sm font-semibold text-foreground">
+                <label htmlFor="calculator-niche" className="block text-sm font-semibold text-foreground">
                   1. Qual é o segmento da sua empresa?
                 </label>
                 <select
+                  id="calculator-niche"
                   value={selectedNicheId}
                   onChange={(e) => setSelectedNicheId(e.target.value)}
-                  className="mt-2.5 w-full rounded-xl border border-input bg-surface px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none transition-colors"
+                  className="mt-2.5 w-full rounded-xl border border-input bg-surface px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none transition-colors cursor-pointer"
                 >
                   {niches.map((item) => (
                     <option key={item.id} value={item.id} className="bg-surface text-foreground">
@@ -119,14 +128,35 @@ export function TrafficCalculator() {
 
               <div>
                 <div className="flex items-center justify-between">
-                  <label className="text-sm font-semibold text-foreground">
+                  <label htmlFor="calculator-budget" className="text-sm font-semibold text-foreground">
                     2. Quanto você planeja investir por mês?
                   </label>
                   <span className="font-display text-lg font-bold text-primary-glow">
                     R$ {budget.toLocaleString('pt-BR')}
                   </span>
                 </div>
+
+                {/* Quick Budget Presets */}
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {[2000, 5000, 10000, 20000].map((preset) => (
+                    <button
+                      key={preset}
+                      type="button"
+                      onClick={() => setBudget(preset)}
+                      className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors cursor-pointer ${
+                        budget === preset
+                          ? 'bg-primary text-primary-foreground shadow-glow'
+                          : 'border border-border/80 bg-surface/80 text-muted-foreground hover:text-foreground hover:bg-white/5'
+                      }`}
+                    >
+                      R$ {(preset / 1000).toFixed(0)}k/mês
+                    </button>
+                  ))}
+                </div>
+
                 <input
+                  id="calculator-budget"
+                  aria-label="Orçamento mensal de investimento em tráfego pago"
                   type="range"
                   min={1000}
                   max={30000}
@@ -159,10 +189,16 @@ export function TrafficCalculator() {
           <Reveal delay={120}>
             <div className="glass-panel h-full rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-primary/40 shadow-glow">
               <div>
-                <span className="text-xs font-semibold uppercase tracking-wider text-primary-glow">
-                  Projeção Mensal Estimada
-                </span>
-                <h3 className="font-display text-xl font-bold mt-1 text-foreground">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-primary-glow">
+                    Projeção Mensal Estimada
+                  </span>
+                  <span className="inline-flex items-center gap-1 rounded-full border border-primary/40 bg-accent/60 px-2.5 py-0.5 text-xs font-semibold text-primary-glow">
+                    <Sparkles className="h-3 w-3" />
+                    ROAS {niche.roasMin}x – {niche.roasMax}x
+                  </span>
+                </div>
+                <h3 className="font-display text-xl font-bold mt-1.5 text-foreground">
                   Resultados Esperados
                 </h3>
 
@@ -175,7 +211,7 @@ export function TrafficCalculator() {
                     <p className="font-display text-lg font-bold text-foreground mt-1">
                       {estimatedReach.toLocaleString('pt-BR')}+
                     </p>
-                    <span className="text-[10px] text-muted-foreground">pessoas impactadas</span>
+                    <span className="text-xs text-muted-foreground">pessoas impactadas</span>
                   </div>
 
                   <div className="rounded-2xl border border-border bg-card/60 p-4">
@@ -186,7 +222,7 @@ export function TrafficCalculator() {
                     <p className="font-display text-lg font-bold text-foreground mt-1">
                       {estimatedClicks.toLocaleString('pt-BR')}+
                     </p>
-                    <span className="text-[10px] text-muted-foreground">visitas qualificadas</span>
+                    <span className="text-xs text-muted-foreground">visitas qualificadas</span>
                   </div>
 
                   <div className="col-span-2 rounded-2xl border border-primary/40 bg-accent/30 p-4">
@@ -209,14 +245,34 @@ export function TrafficCalculator() {
                 </div>
               </div>
 
-              <button
-                type="button"
-                onClick={handleWhatsAppShare}
-                className="btn-hero w-full mt-6 py-3.5 text-sm flex items-center justify-center gap-2 cursor-pointer"
-              >
-                Quero alcançar essa meta no WhatsApp
-                <ArrowRight className="h-4 w-4" />
-              </button>
+              <div className="mt-6 space-y-2.5">
+                <button
+                  type="button"
+                  onClick={handleWhatsAppShare}
+                  className="btn-hero w-full py-3.5 text-sm flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  Quero alcançar essa meta no WhatsApp
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleCopySimulation}
+                  className="btn-outline-hero w-full py-2.5 text-xs flex items-center justify-center gap-2 cursor-pointer text-muted-foreground hover:text-foreground"
+                >
+                  {copied ? (
+                    <>
+                      <Check className="h-3.5 w-3.5 text-emerald-400" />
+                      <span className="text-emerald-400 font-semibold">Resumo da simulação copiado!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-3.5 w-3.5" />
+                      <span>Copiar resumo da simulação</span>
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
           </Reveal>
         </div>

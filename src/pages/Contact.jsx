@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, MessageCircle, Instagram } from 'lucide-react';
+import { Send, MessageCircle, Instagram, Sparkles } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 import {
   serviceOptions,
@@ -35,6 +35,7 @@ export function Contact() {
     servico: serviceOptions[0],
     mensagem: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (field) => (e) => {
     let value = e.target.value;
@@ -46,9 +47,14 @@ export function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     trackEvent('Lead', { source: 'contact_page_form' });
     const msg = `Olá, vim pelo site da Orium Digital e quero agendar uma consultoria gratuita.\n\nNome: ${formData.nome}\nEmpresa: ${formData.empresa || 'Não informado'}\nE-mail: ${formData.email}\nWhatsApp: ${formData.whatsapp}\nServiço de interesse: ${formData.servico}\nMensagem: ${formData.mensagem || 'Sem mensagem adicional'}`;
-    window.open(getWhatsAppLink(msg), '_blank', 'noopener,noreferrer');
+    
+    setTimeout(() => {
+      window.open(getWhatsAppLink(msg), '_blank', 'noopener,noreferrer');
+      setIsSubmitting(false);
+    }, 450);
   };
 
   const inputStyle =
@@ -89,71 +95,121 @@ export function Contact() {
             <Reveal>
               <form
                 onSubmit={handleSubmit}
-                className="glass-panel space-y-4 rounded-3xl p-6 sm:p-8"
+                className="glass-panel space-y-5 rounded-3xl p-6 sm:p-8"
               >
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <input
-                    required
-                    type="text"
-                    placeholder="Nome"
-                    value={formData.nome}
-                    onChange={handleChange('nome')}
-                    className={inputStyle}
-                  />
-                  <input
-                    type="text"
-                    placeholder="Empresa"
-                    value={formData.empresa}
-                    onChange={handleChange('empresa')}
-                    className={inputStyle}
-                  />
+                  <div>
+                    <label htmlFor="contact-nome" className="block text-xs font-semibold text-foreground mb-1.5">
+                      Nome completo <span className="text-primary-glow" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      id="contact-nome"
+                      required
+                      type="text"
+                      placeholder="Seu nome"
+                      autoComplete="name"
+                      value={formData.nome}
+                      onChange={handleChange('nome')}
+                      className={inputStyle}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-empresa" className="block text-xs font-semibold text-foreground mb-1.5">
+                      Empresa / Segmento
+                    </label>
+                    <input
+                      id="contact-empresa"
+                      type="text"
+                      placeholder="Nome da sua empresa"
+                      autoComplete="organization"
+                      value={formData.empresa}
+                      onChange={handleChange('empresa')}
+                      className={inputStyle}
+                    />
+                  </div>
                 </div>
 
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <input
-                    required
-                    type="email"
-                    placeholder="E-mail"
-                    value={formData.email}
-                    onChange={handleChange('email')}
+                  <div>
+                    <label htmlFor="contact-email" className="block text-xs font-semibold text-foreground mb-1.5">
+                      E-mail corporativo <span className="text-primary-glow" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      id="contact-email"
+                      required
+                      type="email"
+                      placeholder="seuemail@empresa.com"
+                      autoComplete="email"
+                      value={formData.email}
+                      onChange={handleChange('email')}
+                      className={inputStyle}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-whatsapp" className="block text-xs font-semibold text-foreground mb-1.5">
+                      WhatsApp com DDD <span className="text-primary-glow" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      id="contact-whatsapp"
+                      required
+                      type="tel"
+                      placeholder="(67) 99999-9999"
+                      autoComplete="tel"
+                      value={formData.whatsapp}
+                      onChange={handleChange('whatsapp')}
+                      className={inputStyle}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="contact-servico" className="block text-xs font-semibold text-foreground mb-1.5">
+                    Serviço de interesse principal
+                  </label>
+                  <select
+                    id="contact-servico"
+                    value={formData.servico}
+                    onChange={handleChange('servico')}
                     className={inputStyle}
-                  />
-                  <input
-                    required
-                    type="tel"
-                    placeholder="WhatsApp"
-                    value={formData.whatsapp}
-                    onChange={handleChange('whatsapp')}
+                  >
+                    {serviceOptions.map((opt) => (
+                      <option key={opt} value={opt} className="bg-surface text-foreground">
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="contact-mensagem" className="block text-xs font-semibold text-foreground mb-1.5">
+                    Mensagem ou momento atual do negócio (opcional)
+                  </label>
+                  <textarea
+                    id="contact-mensagem"
+                    rows={4}
+                    placeholder="Conte um pouco sobre suas metas ou desafios de vendas atuais..."
+                    value={formData.mensagem}
+                    onChange={handleChange('mensagem')}
                     className={inputStyle}
                   />
                 </div>
-
-                <select
-                  value={formData.servico}
-                  onChange={handleChange('servico')}
-                  className={inputStyle}
-                >
-                  {serviceOptions.map((opt) => (
-                    <option key={opt} value={opt} className="bg-surface text-foreground">
-                      {opt}
-                    </option>
-                  ))}
-                </select>
-
-                <textarea
-                  rows={4}
-                  placeholder="Mensagem"
-                  value={formData.mensagem}
-                  onChange={handleChange('mensagem')}
-                  className={inputStyle}
-                />
 
                 <button
                   type="submit"
-                  className="btn-hero w-full px-6 py-3.5 text-sm sm:text-base cursor-pointer"
+                  disabled={isSubmitting}
+                  className="btn-hero w-full px-6 py-3.5 text-sm sm:text-base cursor-pointer disabled:opacity-80 flex items-center justify-center gap-2"
                 >
-                  Enviar solicitação
-                  <Send className="h-4 w-4" />
+                  {isSubmitting ? (
+                    <>
+                      <span>Redirecionando para o WhatsApp...</span>
+                      <Sparkles className="h-4 w-4 animate-spin text-primary-glow" />
+                    </>
+                  ) : (
+                    <>
+                      <span>Enviar solicitação</span>
+                      <Send className="h-4 w-4" />
+                    </>
+                  )}
                 </button>
               </form>
             </Reveal>

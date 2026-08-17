@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Instagram, Send } from 'lucide-react';
+import { Phone, Instagram, Send, Sparkles } from 'lucide-react';
 import {
   WHATSAPP_DISPLAY,
   INSTAGRAM_HANDLE,
@@ -15,6 +15,7 @@ export function Footer({ onNavigate }) {
     whatsapp: '',
     servico: serviceOptions[0],
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleNavClick = (path, anchor) => {
     if (onNavigate) {
@@ -24,9 +25,14 @@ export function Footer({ onNavigate }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     trackEvent('Lead', { source: 'footer_form' });
     const msg = `Olá, vim pelo site da Orium Digital e quero agendar uma consultoria gratuita.\n\nNome: ${formData.nome}\nWhatsApp: ${formData.whatsapp}\nServiço de interesse: ${formData.servico}`;
-    window.open(getWhatsAppLink(msg), '_blank', 'noopener,noreferrer');
+    
+    setTimeout(() => {
+      window.open(getWhatsAppLink(msg), '_blank', 'noopener,noreferrer');
+      setIsSubmitting(false);
+    }, 450);
   };
 
   return (
@@ -34,11 +40,18 @@ export function Footer({ onNavigate }) {
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr_1fr] lg:px-8">
         {/* Brand info */}
         <div>
-          <img
-            src="/assets/logo-horizontal.png"
-            alt="Orium Digital"
-            className="h-12 w-auto"
-          />
+          <picture>
+            <source type="image/webp" srcSet="/assets/logo-horizontal.webp" />
+            <img
+              src="/assets/logo-horizontal.png"
+              alt="Orium Digital"
+              width="190"
+              height="48"
+              loading="lazy"
+              decoding="async"
+              className="h-12 w-auto"
+            />
+          </picture>
           <p className="mt-4 text-sm tracking-widest text-primary-glow font-medium">
             Estratégia • Tráfego • Conversão • Escala
           </p>
@@ -178,39 +191,63 @@ export function Footer({ onNavigate }) {
             Agende sua consultoria
           </h3>
           <form onSubmit={handleSubmit} className="mt-4 space-y-3">
-            <input
-              required
-              type="text"
-              placeholder="Nome"
-              value={formData.nome}
-              onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-              className="w-full rounded-xl border border-input bg-surface px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors"
-            />
-            <input
-              required
-              type="tel"
-              placeholder="WhatsApp"
-              value={formData.whatsapp}
-              onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
-              className="w-full rounded-xl border border-input bg-surface px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors"
-            />
-            <select
-              value={formData.servico}
-              onChange={(e) => setFormData({ ...formData, servico: e.target.value })}
-              className="w-full rounded-xl border border-input bg-surface px-4 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none transition-colors"
-            >
-              {serviceOptions.map((opt) => (
-                <option key={opt} value={opt} className="bg-surface text-foreground">
-                  {opt}
-                </option>
-              ))}
-            </select>
+            <div>
+              <label htmlFor="footer-nome" className="sr-only">Seu nome</label>
+              <input
+                id="footer-nome"
+                required
+                type="text"
+                placeholder="Seu nome"
+                autoComplete="name"
+                value={formData.nome}
+                onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                className="w-full rounded-xl border border-input bg-surface px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors"
+              />
+            </div>
+            <div>
+              <label htmlFor="footer-whatsapp" className="sr-only">Seu WhatsApp</label>
+              <input
+                id="footer-whatsapp"
+                required
+                type="tel"
+                placeholder="WhatsApp com DDD"
+                autoComplete="tel"
+                value={formData.whatsapp}
+                onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
+                className="w-full rounded-xl border border-input bg-surface px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors"
+              />
+            </div>
+            <div>
+              <label htmlFor="footer-servico" className="sr-only">Serviço de interesse</label>
+              <select
+                id="footer-servico"
+                value={formData.servico}
+                onChange={(e) => setFormData({ ...formData, servico: e.target.value })}
+                className="w-full rounded-xl border border-input bg-surface px-4 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none transition-colors"
+              >
+                {serviceOptions.map((opt) => (
+                  <option key={opt} value={opt} className="bg-surface text-foreground">
+                    {opt}
+                  </option>
+                ))}
+              </select>
+            </div>
             <button
               type="submit"
-              className="btn-hero w-full px-5 py-3 text-sm flex items-center justify-center gap-2 cursor-pointer"
+              disabled={isSubmitting}
+              className="btn-hero w-full px-5 py-3 text-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-80"
             >
-              Agendar consultoria gratuita
-              <Send className="h-4 w-4" />
+              {isSubmitting ? (
+                <>
+                  <span>Redirecionando...</span>
+                  <Sparkles className="h-4 w-4 animate-spin text-primary-glow" />
+                </>
+              ) : (
+                <>
+                  <span>Agendar consultoria gratuita</span>
+                  <Send className="h-4 w-4" />
+                </>
+              )}
             </button>
           </form>
         </div>

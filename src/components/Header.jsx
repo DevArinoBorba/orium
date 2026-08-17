@@ -34,11 +34,17 @@ export function Header({ currentPath = '/', onNavigate }) {
           }}
           className="flex shrink-0 items-center cursor-pointer"
         >
-          <img
-            src="/assets/logo-horizontal.png"
-            alt="Orium Digital"
-            className="h-9 w-auto sm:h-10 transition-transform hover:scale-105"
-          />
+          <picture>
+            <source type="image/webp" srcSet="/assets/logo-horizontal.webp" />
+            <img
+              src="/assets/logo-horizontal.png"
+              alt="Orium Digital"
+              width="160"
+              height="40"
+              decoding="async"
+              className="h-9 w-auto sm:h-10 transition-transform hover:scale-105"
+            />
+          </picture>
         </a>
 
         {/* Desktop Navigation */}
