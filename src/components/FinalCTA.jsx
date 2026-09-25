@@ -6,7 +6,7 @@ import { getWhatsAppLink } from '../data/siteData';
 
 export function FinalCTA() {
   return (
-    <section className="relative py-28 border-t border-white/10 bg-gradient-to-b from-[#08070d] via-[#100a1c] to-[#08070d] overflow-hidden">
+    <section className="relative py-28 border-t border-black/10 dark:border-white/10 bg-gradient-to-b from-[#f6f2fc] via-[#f0e8fa] to-[#f8f5fd] dark:from-[#08070d] dark:via-[#100a1c] dark:to-[#08070d] overflow-hidden transition-colors duration-300">
       {/* Grand Nebula Orb */}
       <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
         <div className="w-[850px] h-[500px] rounded-full bg-gradient-to-r from-purple-600/25 via-fuchsia-600/20 to-indigo-600/20 blur-[170px]" />
@@ -14,17 +14,17 @@ export function FinalCTA() {
 
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <Reveal>
-          <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-purple-200 mb-6 shadow-glow">
-            <Sparkles className="h-3.5 w-3.5 text-purple-300 animate-spin" style={{ animationDuration: '6s' }} />
+          <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 dark:bg-purple-500/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-purple-700 dark:text-purple-200 mb-6 shadow-glow">
+            <Sparkles className="h-3.5 w-3.5 text-purple-600 dark:text-purple-300 animate-spin" style={{ animationDuration: '6s' }} />
             O Próximo Passo do Seu Negócio
           </div>
 
-          <h2 className="font-display text-[26px] xs:text-[32px] sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.18] sm:leading-[1.08]">
+          <h2 className="font-display text-[26px] xs:text-[32px] sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-zinc-950 dark:text-white leading-[1.18] sm:leading-[1.08]">
             Pronto para transformar cliques em{' '}
             <span className="text-gradient-purple block sm:inline">faturamento real?</span>
           </h2>
 
-          <p className="mt-6 text-base sm:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal">
+          <p className="mt-6 text-base sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal">
             Agende uma consultoria estratégica gratuita de 30 minutos. Entenda o diagnóstico atual do seu mercado e saiba exatamente o que fazer para vender mais.
           </p>
 
@@ -44,17 +44,17 @@ export function FinalCTA() {
           </div>
 
           {/* Trust Guarantees */}
-          <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap items-center justify-center gap-8 text-xs sm:text-sm text-zinc-400 font-medium">
+          <div className="mt-12 pt-8 border-t border-black/10 dark:border-white/10 flex flex-wrap items-center justify-center gap-8 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-medium">
             <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4 text-purple-400" />
+              <Clock className="h-4 w-4 text-purple-600 dark:text-purple-400" />
               <span>Resposta em poucos minutos</span>
             </div>
             <div className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-purple-400" />
+              <ShieldCheck className="h-4 w-4 text-purple-600 dark:text-purple-400" />
               <span>Sem compromisso ou fidelidade</span>
             </div>
             <div className="flex items-center gap-2">
-              <Zap className="h-4 w-4 text-purple-400" />
+              <Zap className="h-4 w-4 text-purple-600 dark:text-purple-400" />
               <span>Diagnóstico de oportunidades real</span>
             </div>
           </div>

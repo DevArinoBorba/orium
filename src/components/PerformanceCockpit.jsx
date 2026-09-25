@@ -91,7 +91,7 @@ export function PerformanceCockpit() {
   return (
     <section
       id="simulador"
-      className="relative py-28 sm:py-36 border-t border-white/10 overflow-hidden"
+      className="relative py-28 sm:py-36 border-t border-black/10 dark:border-white/10 overflow-hidden"
     >
       {/* Invisible anchor target for #performance as well */}
       <div id="performance" className="absolute -top-24 left-0 pointer-events-none" />
@@ -107,22 +107,22 @@ export function PerformanceCockpit() {
         <div className="mx-auto max-w-3xl text-center mb-14 sm:mb-20">
           <Reveal>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-md mb-5">
-              <Sparkles className="h-3.5 w-3.5 text-purple-300 animate-pulse" />
-              <span className="text-xs uppercase tracking-[0.25em] font-semibold text-purple-200">
+              <Sparkles className="h-3.5 w-3.5 text-purple-600 dark:text-purple-300 animate-pulse" />
+              <span className="text-xs uppercase tracking-[0.25em] font-semibold text-purple-700 dark:text-purple-200">
                 Engenharia de Tráfego & Escala
               </span>
             </div>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight">
+            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-zinc-950 dark:text-white tracking-tight">
               Nosso Painel de{' '}
               <span className="text-gradient-purple">Performance & ROAS</span>
             </h2>
           </Reveal>
 
           <Reveal delay={0.2}>
-            <p className="mt-5 text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
+            <p className="mt-5 text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed font-normal">
               Substituímos suposições por inteligência de dados. Veja abaixo como gerenciamos os canais de aquisição, multiplicamos a geração de leads e construímos previsibilidade de receita para os nossos clientes.
             </p>
           </Reveal>
@@ -137,9 +137,9 @@ export function PerformanceCockpit() {
             <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-purple-600/30 via-fuchsia-600/20 to-purple-600/30 blur-2xl opacity-60 -z-10 pointer-events-none" />
 
             {/* Main Window */}
-            <div className="relative rounded-3xl border border-purple-500/30 bg-gradient-to-b from-[#13111e]/95 via-[#0e0c17]/95 to-[#08070d]/98 backdrop-blur-2xl shadow-[0_30px_100px_-20px_rgba(168,85,247,0.35)] overflow-hidden">
+            <div className="relative rounded-3xl border border-purple-500/20 dark:border-purple-500/30 bg-white/95 dark:bg-gradient-to-b dark:from-[#13111e]/95 dark:via-[#0e0c17]/95 dark:to-[#08070d]/98 backdrop-blur-2xl shadow-[0_20px_60px_-15px_rgba(168,85,247,0.15)] dark:shadow-[0_30px_100px_-20px_rgba(168,85,247,0.35)] overflow-hidden">
               {/* Cockpit Window Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-6 py-4.5 border-b border-white/10 bg-white/[0.02]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-6 py-4.5 border-b border-black/10 dark:border-white/10 bg-zinc-100/70 dark:bg-white/[0.02]">
                 {/* macOS style window dots + Title */}
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-1.5">
@@ -147,13 +147,13 @@ export function PerformanceCockpit() {
                     <span className="h-3 w-3 rounded-full bg-[#ffbd2e] opacity-80" />
                     <span className="h-3 w-3 rounded-full bg-[#27c93f] opacity-80" />
                   </div>
-                  <div className="h-4 w-[1px] bg-white/10 mx-1 hidden sm:block" />
+                  <div className="h-4 w-[1px] bg-black/10 dark:bg-white/10 mx-1 hidden sm:block" />
                   <div className="flex items-center gap-2">
-                    <BarChart3 className="h-4 w-4 text-purple-400" />
-                    <span className="text-xs sm:text-sm font-semibold text-white tracking-wide">
+                    <BarChart3 className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+                    <span className="text-xs sm:text-sm font-semibold text-zinc-900 dark:text-white tracking-wide">
                       Cockpit de Escala & Performance Orium
                     </span>
-                    <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 font-bold hidden md:inline-block">
+                    <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-purple-500/15 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 border border-purple-500/25 dark:border-purple-500/30 font-bold hidden md:inline-block">
                       Live Analytics
                     </span>
                   </div>
@@ -174,17 +174,17 @@ export function PerformanceCockpit() {
                       className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
                         selectedChannel === tab.id
                           ? 'bg-purple-600 text-white shadow-[0_0_15px_rgba(168,85,247,0.4)]'
-                          : 'bg-white/[0.04] text-zinc-400 hover:text-white hover:bg-white/[0.08]'
+                          : 'bg-black/[0.04] dark:bg-white/[0.04] text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-black/[0.08] dark:hover:bg-white/[0.08]'
                       }`}
                     >
                       {tab.label}
                     </button>
                   ))}
 
-                  <div className="h-4 w-[1px] bg-white/10 mx-1 hidden lg:block" />
+                  <div className="h-4 w-[1px] bg-black/10 dark:bg-white/10 mx-1 hidden lg:block" />
 
-                  <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-semibold text-emerald-400">
-                    <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                     <span>Campanhas Ativas</span>
                   </div>
                 </div>
@@ -195,29 +195,29 @@ export function PerformanceCockpit() {
                 {/* 1. Three Panoramic Metric Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {/* Metric 1 */}
-                  <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-purple-500/30 transition-colors">
-                    <div className="flex items-center justify-between text-xs text-zinc-400 mb-2">
+                  <div className="p-5 rounded-2xl bg-zinc-50/80 dark:bg-white/[0.03] border border-black/5 dark:border-white/10 hover:border-purple-500/30 transition-colors">
+                    <div className="flex items-center justify-between text-xs text-zinc-600 dark:text-zinc-400 mb-2">
                       <span className="font-medium">Geração de Leads Qualificados</span>
-                      <div className="h-7 w-7 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-300">
+                      <div className="h-7 w-7 rounded-lg bg-purple-500/15 dark:bg-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-300">
                         <Users className="h-4 w-4" />
                       </div>
                     </div>
                     <div className="flex items-baseline gap-2">
-                      <span className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                      <span className="font-display text-3xl sm:text-4xl font-extrabold text-zinc-950 dark:text-white tracking-tight">
                         {currentData.leads}
                       </span>
-                      <span className="text-xs font-semibold text-emerald-400 flex items-center gap-0.5">
+                      <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5">
                         <TrendingUp className="h-3.5 w-3.5" /> +52% vs mês ant.
                       </span>
                     </div>
-                    <p className="mt-2 text-xs text-zinc-400">{currentData.leadsSub}</p>
+                    <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">{currentData.leadsSub}</p>
                   </div>
 
                   {/* Metric 2 */}
-                  <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-purple-500/30 transition-colors">
-                    <div className="flex items-center justify-between text-xs text-zinc-400 mb-2">
+                  <div className="p-5 rounded-2xl bg-zinc-50/80 dark:bg-white/[0.03] border border-black/5 dark:border-white/10 hover:border-purple-500/30 transition-colors">
+                    <div className="flex items-center justify-between text-xs text-zinc-600 dark:text-zinc-400 mb-2">
                       <span className="font-medium">ROAS Médio de Retorno</span>
-                      <div className="h-7 w-7 rounded-lg bg-fuchsia-500/20 flex items-center justify-center text-fuchsia-300">
+                      <div className="h-7 w-7 rounded-lg bg-fuchsia-500/15 dark:bg-fuchsia-500/20 flex items-center justify-center text-fuchsia-600 dark:text-fuchsia-300">
                         <Zap className="h-4 w-4" />
                       </div>
                     </div>
@@ -225,47 +225,47 @@ export function PerformanceCockpit() {
                       <span className="font-display text-3xl sm:text-4xl font-extrabold text-gradient-purple tracking-tight">
                         {currentData.roas}
                       </span>
-                      <span className="text-xs font-semibold text-purple-300">
+                      <span className="text-xs font-semibold text-purple-700 dark:text-purple-300">
                         Retorno s/ anúncio
                       </span>
                     </div>
-                    <p className="mt-2 text-xs text-zinc-400">{currentData.roasSub}</p>
+                    <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">{currentData.roasSub}</p>
                   </div>
 
                   {/* Metric 3 */}
-                  <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-purple-500/30 transition-colors">
-                    <div className="flex items-center justify-between text-xs text-zinc-400 mb-2">
+                  <div className="p-5 rounded-2xl bg-zinc-50/80 dark:bg-white/[0.03] border border-black/5 dark:border-white/10 hover:border-purple-500/30 transition-colors">
+                    <div className="flex items-center justify-between text-xs text-zinc-600 dark:text-zinc-400 mb-2">
                       <span className="font-medium">Faturamento Total Gerado</span>
-                      <div className="h-7 w-7 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-300">
+                      <div className="h-7 w-7 rounded-lg bg-emerald-500/15 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-300">
                         <TrendingUp className="h-4 w-4" />
                       </div>
                     </div>
                     <div className="flex items-baseline gap-2">
-                      <span className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                      <span className="font-display text-3xl sm:text-4xl font-extrabold text-zinc-950 dark:text-white tracking-tight">
                         {currentData.revenue}
                       </span>
-                      <span className="text-xs font-semibold text-emerald-400">
+                      <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                         Crescimento real
                       </span>
                     </div>
-                    <p className="mt-2 text-xs text-zinc-400">{currentData.revenueSub}</p>
+                    <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">{currentData.revenueSub}</p>
                   </div>
                 </div>
 
                 {/* 2. Dual Panel: High-Res SVG Growth Chart + Active Channel Distribution */}
                 <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6">
                   {/* Left: Glowing Exponential Growth Curve */}
-                  <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col justify-between">
+                  <div className="p-6 rounded-2xl bg-zinc-50/80 dark:bg-white/[0.02] border border-black/5 dark:border-white/10 flex flex-col justify-between">
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <h4 className="text-sm font-bold text-white tracking-wide">
+                        <h4 className="text-sm font-bold text-zinc-900 dark:text-white tracking-wide">
                           Curva de Escala & Receita Acumulada
                         </h4>
-                        <p className="text-xs text-zinc-400 mt-0.5">
+                        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
                           Progressão média de faturamento das contas geridas pela Orium
                         </p>
                       </div>
-                      <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                      <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
                         {currentData.peakValue}
                       </span>
                     </div>
@@ -279,7 +279,7 @@ export function PerformanceCockpit() {
                       >
                         <defs>
                           <linearGradient id="cockpitGradientArea" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stopColor="#a855f7" stopOpacity="0.45" />
+                            <stop offset="0%" stopColor="#a855f7" stopOpacity="0.35" />
                             <stop offset="100%" stopColor="#a855f7" stopOpacity="0.0" />
                           </linearGradient>
                           <linearGradient id="cockpitGradientStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -290,9 +290,9 @@ export function PerformanceCockpit() {
                         </defs>
 
                         {/* Subtle Grid Lines */}
-                        <line x1="0" y1="35" x2="660" y2="35" stroke="rgba(255,255,255,0.06)" strokeDasharray="4 4" />
-                        <line x1="0" y1="80" x2="660" y2="80" stroke="rgba(255,255,255,0.06)" strokeDasharray="4 4" />
-                        <line x1="0" y1="125" x2="660" y2="125" stroke="rgba(255,255,255,0.06)" strokeDasharray="4 4" />
+                        <line x1="0" y1="35" x2="660" y2="35" stroke="currentColor" className="text-black/[0.06] dark:text-white/[0.06]" strokeDasharray="4 4" />
+                        <line x1="0" y1="80" x2="660" y2="80" stroke="currentColor" className="text-black/[0.06] dark:text-white/[0.06]" strokeDasharray="4 4" />
+                        <line x1="0" y1="125" x2="660" y2="125" stroke="currentColor" className="text-black/[0.06] dark:text-white/[0.06]" strokeDasharray="4 4" />
 
                         {/* Area */}
                         <path d={currentData.areaPath} fill="url(#cockpitGradientArea)" />
@@ -313,28 +313,28 @@ export function PerformanceCockpit() {
                         <circle cx="495" cy="30" r="5" fill="#ec4899" />
 
                         {/* Peak Point */}
-                        <circle cx="660" cy="12" r="5.5" fill="#ffffff" />
+                        <circle cx="660" cy="12" r="5.5" fill="#ffffff" stroke="#9333ea" strokeWidth="1.5" />
                         <circle cx="660" cy="12" r="10" fill="none" stroke="#ec4899" strokeWidth="2.5" className="animate-ping" />
                       </svg>
                     </div>
 
                     {/* Timeline labels */}
-                    <div className="flex justify-between text-[11px] text-zinc-500 font-medium pt-3 border-t border-white/5">
+                    <div className="flex justify-between text-[11px] text-zinc-500 font-medium pt-3 border-t border-black/5 dark:border-white/5">
                       <span>Mês 1 (Auditoria & Setup)</span>
                       <span>Mês 2 (Validação de Oferta)</span>
                       <span>Mês 3 (Tração & Otimização)</span>
-                      <span className="text-purple-300 font-semibold">Mês 6 (Escala Acelerada)</span>
+                      <span className="text-purple-600 dark:text-purple-300 font-semibold">Mês 6 (Escala Acelerada)</span>
                     </div>
                   </div>
 
                   {/* Right: Active Channel Breakdown */}
-                  <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col justify-between">
+                  <div className="p-6 rounded-2xl bg-zinc-50/80 dark:bg-white/[0.02] border border-black/5 dark:border-white/10 flex flex-col justify-between">
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <h4 className="text-sm font-bold text-white tracking-wide">
+                        <h4 className="text-sm font-bold text-zinc-900 dark:text-white tracking-wide">
                           Distribuição por Canal
                         </h4>
-                        <span className="text-[11px] text-zinc-400 font-medium">
+                        <span className="text-[11px] text-zinc-500 dark:text-zinc-400 font-medium">
                           Taxa de Eficiência
                         </span>
                       </div>
@@ -343,10 +343,10 @@ export function PerformanceCockpit() {
                         {/* Meta Ads */}
                         <div>
                           <div className="flex items-center justify-between text-xs mb-1.5">
-                            <span className="text-zinc-200 font-medium">Meta Ads (Instagram & Facebook)</span>
-                            <span className="text-purple-300 font-bold">{currentData.metaEffic}</span>
+                            <span className="text-zinc-700 dark:text-zinc-200 font-medium">Meta Ads (Instagram & Facebook)</span>
+                            <span className="text-purple-600 dark:text-purple-300 font-bold">{currentData.metaEffic}</span>
                           </div>
-                          <div className="h-2 w-full rounded-full bg-white/5 overflow-hidden">
+                          <div className="h-2 w-full rounded-full bg-black/5 dark:bg-white/5 overflow-hidden">
                             <div
                               className="h-full bg-gradient-to-r from-purple-500 to-fuchsia-500 rounded-full transition-all duration-500"
                               style={{ width: currentData.metaEffic }}
@@ -357,10 +357,10 @@ export function PerformanceCockpit() {
                         {/* Google Ads */}
                         <div>
                           <div className="flex items-center justify-between text-xs mb-1.5">
-                            <span className="text-zinc-200 font-medium">Google Ads (Pesquisa & Maps)</span>
-                            <span className="text-purple-300 font-bold">{currentData.googleEffic}</span>
+                            <span className="text-zinc-700 dark:text-zinc-200 font-medium">Google Ads (Pesquisa & Maps)</span>
+                            <span className="text-purple-600 dark:text-purple-300 font-bold">{currentData.googleEffic}</span>
                           </div>
-                          <div className="h-2 w-full rounded-full bg-white/5 overflow-hidden">
+                          <div className="h-2 w-full rounded-full bg-black/5 dark:bg-white/5 overflow-hidden">
                             <div
                               className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-500"
                               style={{ width: currentData.googleEffic }}
@@ -371,10 +371,10 @@ export function PerformanceCockpit() {
                         {/* TikTok Ads */}
                         <div>
                           <div className="flex items-center justify-between text-xs mb-1.5">
-                            <span className="text-zinc-200 font-medium">TikTok Ads & Vídeos Curtos</span>
-                            <span className="text-purple-300 font-bold">{currentData.tiktokEffic}</span>
+                            <span className="text-zinc-700 dark:text-zinc-200 font-medium">TikTok Ads & Vídeos Curtos</span>
+                            <span className="text-purple-600 dark:text-purple-300 font-bold">{currentData.tiktokEffic}</span>
                           </div>
-                          <div className="h-2 w-full rounded-full bg-white/5 overflow-hidden">
+                          <div className="h-2 w-full rounded-full bg-black/5 dark:bg-white/5 overflow-hidden">
                             <div
                               className="h-full bg-gradient-to-r from-fuchsia-500 to-pink-500 rounded-full transition-all duration-500"
                               style={{ width: currentData.tiktokEffic }}
@@ -385,21 +385,21 @@ export function PerformanceCockpit() {
                     </div>
 
                     {/* Strategic Insight Callout */}
-                    <div className="mt-5 p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-xs text-zinc-300 leading-relaxed">
+                    <div className="mt-5 p-3.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-xs text-purple-950 dark:text-zinc-300 leading-relaxed">
                       {currentData.insight}
                     </div>
                   </div>
                 </div>
 
                 {/* 3. Cockpit Bottom Bar with Direct CTA */}
-                <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-5">
-                  <div className="flex items-center gap-3 text-xs text-zinc-400">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-purple-500/15 text-purple-300">
+                <div className="pt-6 border-t border-black/10 dark:border-white/10 flex flex-col md:flex-row items-center justify-between gap-5">
+                  <div className="flex items-center gap-3 text-xs text-zinc-600 dark:text-zinc-400">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-purple-500/15 text-purple-600 dark:text-purple-300">
                       <ShieldCheck className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-white font-semibold">Garantia de Transparência Total</p>
-                      <p className="text-[11px] text-zinc-400">
+                      <p className="text-zinc-900 dark:text-white font-semibold">Garantia de Transparência Total</p>
+                      <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
                         Acesso irrestrito às suas contas de anúncio e relatórios semanais com nossos especialistas.
                       </p>
                     </div>

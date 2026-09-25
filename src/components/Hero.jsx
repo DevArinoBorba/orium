@@ -118,7 +118,7 @@ export function Hero({ onNavigate }) {
 
           {/* Split Headline with Harmonized Manrope Typography */}
           <div ref={titleRef} className="font-sans font-extrabold tracking-tight w-full px-2 sm:px-0">
-            <h1 className="font-sans font-extrabold text-[28px] xs:text-[34px] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.14] sm:leading-[1.08] text-white">
+            <h1 className="font-sans font-extrabold text-[28px] xs:text-[34px] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.14] sm:leading-[1.08] text-zinc-950 dark:text-white">
               Transformamos tráfego em{' '}
               <span className="text-gradient-purple inline-block">faturamento real</span> e previsível.
             </h1>
@@ -127,10 +127,10 @@ export function Hero({ onNavigate }) {
           {/* Subtitle Description */}
           <p
             ref={descRef}
-            className="mt-6 text-base sm:text-xl text-zinc-300 leading-relaxed max-w-2xl font-normal"
+            className="mt-6 text-base sm:text-xl text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl font-normal"
           >
             Não vendemos apenas cliques sem intenção. Desenhamos e executamos a esteira estratégica completa:
-            <strong className="text-white font-medium"> Google Ads, Meta Ads, TikTok Ads e Páginas de Alta Conversão</strong> com foco obsessivo no seu retorno sobre investimento.
+            <strong className="text-zinc-900 dark:text-white font-medium"> Google Ads, Meta Ads, TikTok Ads e Páginas de Alta Conversão</strong> com foco obsessivo no seu retorno sobre investimento.
           </p>
 
           {/* Magnetic CTAs */}
@@ -144,7 +144,7 @@ export function Hero({ onNavigate }) {
               target="_blank"
               rel="noopener noreferrer"
               dataCursor="Consultoria"
-              className="btn-hero px-9 py-4 text-base w-full sm:w-auto"
+              className="btn-hero px-9 py-4 text-base w-full sm:w-auto shadow-glow"
             >
               <span>Agendar Consultoria Gratuita</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -167,18 +167,18 @@ export function Hero({ onNavigate }) {
           {/* Key Quality Assurances */}
           <div
             ref={guaranteesRef}
-            className="mt-9 flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-400 font-medium"
+            className="mt-9 flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-600 dark:text-zinc-400 font-medium"
           >
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-purple-400" />
+              <CheckCircle2 className="h-4 w-4 text-purple-600 dark:text-purple-400" />
               <span>Estratégia 100% Personalizada</span>
             </div>
             <div className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-purple-400" />
+              <ShieldCheck className="h-4 w-4 text-purple-600 dark:text-purple-400" />
               <span>Sem contratos de fidelidade forçada</span>
             </div>
             <div className="flex items-center gap-2">
-              <Flame className="h-4 w-4 text-purple-400" />
+              <Flame className="h-4 w-4 text-purple-600 dark:text-purple-400" />
               <span>Otimização diária de campanhas</span>
             </div>
           </div>
@@ -189,11 +189,11 @@ export function Hero({ onNavigate }) {
         {/* ======================================================== */}
         <div
           ref={statsRef}
-          className="mt-20 pt-12 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center w-full max-w-5xl"
+          className="mt-20 pt-12 border-t border-black/10 dark:border-white/10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center w-full max-w-5xl"
         >
           {stats.map((stat, idx) => (
             <div key={idx} className="flex flex-col items-center">
-              <span className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+              <span className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-zinc-950 dark:text-white tracking-tight">
                 <AnimatedCounter
                   value={stat.value}
                   prefix={stat.prefix}
@@ -201,7 +201,7 @@ export function Hero({ onNavigate }) {
                   duration={1800}
                 />
               </span>
-              <span className="mt-2 text-xs sm:text-sm text-zinc-400 font-medium max-w-[180px]">
+              <span className="mt-2 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-medium max-w-[180px]">
                 {stat.label}
               </span>
             </div>

@@ -18,7 +18,7 @@ export const brandLogos = [
           H
         </text>
         {/* Horizontal banner bar crossing through center with GRANDE HOMEM */}
-        <rect x="6" y="17" width="88" height="11" rx="1.5" fill="#08070c" stroke="url(#brandPurpleGrad)" strokeWidth="0.9" />
+        <rect x="6" y="17" width="88" height="11" rx="1.5" className="fill-[#faf8fd] dark:fill-[#08070c] transition-colors" stroke="url(#brandPurpleGrad)" strokeWidth="0.9" />
         <text x="50" y="25.5" textAnchor="middle" fontFamily="'Cinzel', 'Syne', serif" fontWeight="700" fontSize="6.8" letterSpacing="0.22em" fill="currentColor">
           GRANDE HOMEM
         </text>
@@ -305,7 +305,7 @@ export function ClientLogos() {
   const doubleList = [...brandLogos, ...brandLogos];
 
   return (
-    <section id="marcas" className="relative py-20 border-y border-white/10 bg-[#08070c] overflow-hidden">
+    <section id="marcas" className="relative py-20 border-y border-black/10 dark:border-white/10 bg-[#f8f6fc] dark:bg-[#08070c] overflow-hidden transition-colors duration-300">
       {/* SVG linear gradient definitions */}
       <svg width="0" height="0" className="absolute pointer-events-none">
         <defs>
@@ -326,13 +326,13 @@ export function ClientLogos() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 text-center">
         <Reveal>
-          <span className="text-xs uppercase tracking-[0.3em] font-semibold text-purple-400">
+          <span className="text-xs uppercase tracking-[0.3em] font-semibold text-purple-600 dark:text-purple-400">
             Marcas & Clientes
           </span>
-          <h2 className="mt-3 font-display text-2xl sm:text-3xl font-bold tracking-tight text-white">
+          <h2 className="mt-3 font-display text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-white">
             Empresas que escalam com a <span className="text-gradient-purple">Orium Digital</span>
           </h2>
-          <p className="mt-2 text-sm text-zinc-400 max-w-xl mx-auto">
+          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto">
             Negócios posicionados com autoridade, tráfego assertivo e alta conversão no digital.
           </p>
         </Reveal>
@@ -348,7 +348,7 @@ export function ClientLogos() {
               target="_blank"
               rel="noopener noreferrer"
               title={`${brand.name} • ${brand.category}`}
-              className="group relative flex items-center justify-center px-6 py-3.5 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.06] hover:border-purple-500/40 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(168,85,247,0.35)] shrink-0 text-zinc-400 hover:text-white"
+              className="group relative flex items-center justify-center px-6 py-3.5 rounded-2xl border border-black/5 dark:border-white/5 bg-white/70 dark:bg-white/[0.02] hover:bg-white dark:hover:bg-white/[0.06] hover:border-purple-500/40 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(168,85,247,0.25)] shrink-0 text-zinc-700 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white"
             >
               <div className="transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">
                 {brand.svg}
@@ -358,7 +358,7 @@ export function ClientLogos() {
         </div>
       </div>
 
-      <div className="mt-8 flex justify-center items-center gap-2 text-xs text-zinc-500 font-medium tracking-widest uppercase">
+      <div className="mt-8 flex justify-center items-center gap-2 text-xs text-zinc-600 dark:text-zinc-500 font-medium tracking-widest uppercase">
         <span className="h-1 w-1 rounded-full bg-purple-500" />
         Toque ou passe o cursor nas marcas para acessar o site oficial
         <span className="h-1 w-1 rounded-full bg-purple-500" />

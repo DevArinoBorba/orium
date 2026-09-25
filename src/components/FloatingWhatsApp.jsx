@@ -9,7 +9,7 @@ export function FloatingWhatsApp() {
     <aside aria-label="Atendimento rápido no WhatsApp" className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 flex items-center gap-3">
       {/* Tooltip on hover */}
       <div
-        className={`hidden sm:flex items-center gap-2 glass-panel border-purple-500/40 rounded-full px-4 py-2 text-xs font-semibold text-white shadow-2xl transition-all duration-300 pointer-events-none ${
+        className={`hidden sm:flex items-center gap-2 glass-panel border-purple-500/40 rounded-full px-4 py-2 text-xs font-semibold text-zinc-950 dark:text-white shadow-2xl transition-all duration-300 pointer-events-none ${
           hovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-3'
         }`}
       >
@@ -34,7 +34,7 @@ export function FloatingWhatsApp() {
         {/* Pulsing beacon badge */}
         <span className="absolute -top-1 -right-1 flex h-4 w-4">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-          <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-[#08070c]" />
+          <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-[#faf8fd] dark:border-[#08070c]" />
         </span>
 
         <svg

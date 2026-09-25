@@ -25,10 +25,9 @@ export function AuthorityManifesto() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         words,
-        { opacity: 0.18, color: '#64748b' },
+        { opacity: 0.2 },
         {
           opacity: 1,
-          color: '#ffffff',
           stagger: 0.08,
           ease: 'none',
           scrollTrigger: {
@@ -48,7 +47,7 @@ export function AuthorityManifesto() {
     'Acreditamos que tráfego sem estratégia é apenas dinheiro jogado fora. O verdadeiro crescimento acontece quando aliamos posicionamento magnético, páginas velozes que convertem e anúncios hipersegmentados direto para o público com poder de compra.';
 
   return (
-    <section id="sobre-nos" className="relative py-28 border-t border-white/10 bg-[#07060b] overflow-hidden">
+    <section id="sobre-nos" className="relative py-28 border-t border-black/10 dark:border-white/10 bg-[#faf8fd] dark:bg-[#07060b] overflow-hidden transition-colors duration-300">
       {/* Background Lighting */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute top-1/3 -left-32 w-[600px] h-[600px] rounded-full bg-purple-700/10 blur-[150px]" />
@@ -59,18 +58,18 @@ export function AuthorityManifesto() {
           {/* Left Column: Manifesto & Strategic Vision */}
           <div>
             <Reveal>
-              <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-purple-300 mb-6">
-                <Award className="h-3.5 w-3.5 text-purple-400" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-purple-700 dark:text-purple-300 mb-6">
+                <Award className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
                 Liderança & Manifesto
               </div>
-              <h2 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-[1.15]">
+              <h2 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-zinc-950 dark:text-white leading-[1.15]">
                 Muito além de métricas de vaidade.{' '}
                 <span className="text-gradient-purple">Construímos autoridade duradoura.</span>
               </h2>
             </Reveal>
 
             {/* Scroll-Scrubbed Words Manifesto */}
-            <div ref={textRef} className="mt-8 text-xl sm:text-2xl lg:text-3xl font-display font-medium leading-relaxed">
+            <div ref={textRef} className="mt-8 text-xl sm:text-2xl lg:text-3xl font-display font-medium leading-relaxed text-zinc-950 dark:text-white">
               {manifestoParagraph.split(' ').map((word, index) => (
                 <span key={index} className="word inline-block mr-2 transition-colors">
                   {word}
@@ -81,23 +80,23 @@ export function AuthorityManifesto() {
             {/* Founder Quote Card */}
             <Reveal delay={150}>
               <div className="mt-10 p-6 rounded-3xl glass-panel border-purple-500/20 shadow-xl relative">
-                <Quote className="h-8 w-8 text-purple-400/30 absolute top-5 right-6 pointer-events-none" />
-                <p className="text-sm sm:text-base text-zinc-300 italic leading-relaxed">
+                <Quote className="h-8 w-8 text-purple-600/30 dark:text-purple-400/30 absolute top-5 right-6 pointer-events-none" />
+                <p className="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 italic leading-relaxed">
                   "Nosso compromisso é tratar cada centavo investido do seu negócio como se fosse nosso. Analisamos os dados diariamente para que sua empresa nunca pare de crescer."
                 </p>
-                <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+                <div className="mt-4 pt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
                   <div>
-                    <h4 className="text-sm font-bold text-white">Moniqui Borges</h4>
-                    <p className="text-xs text-purple-300">Fundadora e Estrategista de Marketing Digital</p>
+                    <h4 className="text-sm font-bold text-zinc-950 dark:text-white">Moniqui Borges</h4>
+                    <p className="text-xs text-purple-700 dark:text-purple-300">Fundadora e Estrategista de Marketing Digital</p>
                   </div>
                   <a
                     href={INSTAGRAM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     data-cursor="Instagram"
-                    className="flex items-center gap-1.5 text-xs font-semibold text-zinc-400 hover:text-white transition-colors"
+                    className="flex items-center gap-1.5 text-xs font-semibold text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
                   >
-                    <Instagram className="h-4 w-4 text-purple-400" />
+                    <Instagram className="h-4 w-4 text-purple-600 dark:text-purple-400" />
                     <span>@oriumdigitaloficial</span>
                   </a>
                 </div>
@@ -126,7 +125,7 @@ export function AuthorityManifesto() {
               <SpotlightCard
                 tiltStrength={8}
                 dataCursor="Moniqui Borges"
-                className="p-3 border-purple-500/40 bg-gradient-to-b from-purple-950/30 to-[#0e0d16] shadow-2xl overflow-hidden"
+                className="p-3 border-purple-500/25 dark:border-purple-500/40 bg-white/90 dark:bg-gradient-to-b dark:from-purple-950/30 dark:to-[#0e0d16] shadow-2xl overflow-hidden"
               >
                 <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-black">
                   <picture>
@@ -138,17 +137,17 @@ export function AuthorityManifesto() {
                       loading="lazy"
                     />
                   </picture>
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#09080e] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
 
                   {/* Corner Badge */}
-                  <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl glass-panel border-white/10 backdrop-blur-md">
-                    <p className="text-xs uppercase tracking-[0.25em] font-semibold text-purple-300">
+                  <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl glass-panel border-white/20 backdrop-blur-md">
+                    <p className="text-xs uppercase tracking-[0.25em] font-semibold text-purple-700 dark:text-purple-300">
                       Liderança Estratégica
                     </p>
-                    <p className="font-display text-lg font-bold text-white mt-0.5">
+                    <p className="font-display text-lg font-bold text-zinc-950 dark:text-white mt-0.5">
                       Moniqui Borges
                     </p>
-                    <p className="text-xs text-zinc-400">
+                    <p className="text-xs text-zinc-600 dark:text-zinc-400">
                       Especialista em Gestão de Tráfego Pago & Escala Digital
                     </p>
                   </div>
@@ -157,10 +156,10 @@ export function AuthorityManifesto() {
 
               {/* Floating Shield Badge */}
               <div className="absolute -bottom-5 -left-5 hidden sm:flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel border-purple-500/30 shadow-2xl">
-                <ShieldCheck className="h-6 w-6 text-purple-400" />
+                <ShieldCheck className="h-6 w-6 text-purple-600 dark:text-purple-400" />
                 <div>
-                  <p className="text-xs font-bold text-white">+R$ 500k Verba Gerenciada</p>
-                  <p className="text-[11px] text-zinc-400">Google, Meta & TikTok Ads</p>
+                  <p className="text-xs font-bold text-zinc-950 dark:text-white">+R$ 500k Verba Gerenciada</p>
+                  <p className="text-[11px] text-zinc-600 dark:text-zinc-400">Google, Meta & TikTok Ads</p>
                 </div>
               </div>
             </div>

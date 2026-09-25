@@ -37,14 +37,23 @@ export function Footer({ onNavigate }) {
   };
 
   return (
-    <footer className="border-t border-white/10 bg-[#07060a] relative overflow-hidden">
+    <footer className="border-t border-black/10 dark:border-white/10 bg-[#f4f1fa] dark:bg-[#07060a] relative overflow-hidden transition-colors duration-300">
       {/* Background Accent */}
       <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-purple-900/10 blur-[150px] -z-10" />
 
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.3fr_0.8fr_1fr] lg:px-8">
         {/* Brand info */}
         <div>
-          <picture>
+          <img
+            src="/assets/logo-horizontal-light-theme.png"
+            alt="Orium Digital"
+            width="190"
+            height="48"
+            loading="lazy"
+            decoding="async"
+            className="h-11 w-auto dark:hidden"
+          />
+          <picture className="hidden dark:block">
             <source type="image/webp" srcSet="/assets/logo-horizontal.webp" />
             <img
               src="/assets/logo-horizontal.png"
@@ -57,24 +66,24 @@ export function Footer({ onNavigate }) {
             />
           </picture>
 
-          <p className="mt-4 text-xs tracking-[0.25em] text-purple-300 font-semibold uppercase">
+          <p className="mt-4 text-xs tracking-[0.25em] text-purple-700 dark:text-purple-300 font-semibold uppercase">
             Estratégia • Tráfego • Conversão • Escala
           </p>
 
-          <p className="mt-3 text-sm text-zinc-400 max-w-sm leading-relaxed">
+          <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400 max-w-sm leading-relaxed">
             Agência de marketing digital de alta performance especializada em atrair clientes qualificados e multiplicar o faturamento de empresas em todo o Brasil.
           </p>
 
-          <div className="mt-6 space-y-3 text-sm text-zinc-400 font-medium">
+          <div className="mt-6 space-y-3 text-sm text-zinc-600 dark:text-zinc-400 font-medium">
             <a
               href={getWhatsAppLink()}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent('Contact', { source: 'footer_whatsapp' })}
               data-cursor="WhatsApp"
-              className="flex items-center gap-2.5 transition-colors hover:text-white"
+              className="flex items-center gap-2.5 transition-colors hover:text-zinc-950 dark:hover:text-white"
             >
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-purple-500/15 text-purple-300">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-purple-500/15 text-purple-600 dark:text-purple-300">
                 <Phone className="h-4 w-4" />
               </div>
               <span>WhatsApp: {WHATSAPP_DISPLAY}</span>
@@ -86,16 +95,16 @@ export function Footer({ onNavigate }) {
               rel="noopener noreferrer"
               onClick={() => trackEvent('Contact', { source: 'footer_instagram' })}
               data-cursor="Instagram"
-              className="flex items-center gap-2.5 transition-colors hover:text-white"
+              className="flex items-center gap-2.5 transition-colors hover:text-zinc-950 dark:hover:text-white"
             >
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-purple-500/15 text-purple-300">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-purple-500/15 text-purple-600 dark:text-purple-300">
                 <Instagram className="h-4 w-4" />
               </div>
               <span>{INSTAGRAM_HANDLE}</span>
             </a>
 
-            <div className="flex items-center gap-2.5 text-zinc-500 text-xs">
-              <MapPin className="h-4 w-4 text-purple-400" />
+            <div className="flex items-center gap-2.5 text-zinc-500 dark:text-zinc-500 text-xs">
+              <MapPin className="h-4 w-4 text-purple-600 dark:text-purple-400" />
               <span>Atendimento Digital para Todo o Brasil & Exterior</span>
             </div>
           </div>
@@ -103,10 +112,10 @@ export function Footer({ onNavigate }) {
 
         {/* Quick Links */}
         <nav className="text-sm">
-          <h3 className="font-display text-xs font-bold uppercase tracking-[0.2em] text-purple-300">
+          <h3 className="font-display text-xs font-bold uppercase tracking-[0.2em] text-purple-700 dark:text-purple-300">
             Navegação Rápida
           </h3>
-          <ul className="mt-5 grid grid-cols-2 gap-y-3 gap-x-4 text-zinc-400">
+          <ul className="mt-5 grid grid-cols-2 gap-y-3 gap-x-4 text-zinc-600 dark:text-zinc-400">
             {[
               { label: 'Início', path: '/', anchor: 'inicio' },
               { label: 'Serviços', path: '/', anchor: 'servicos' },
@@ -126,7 +135,7 @@ export function Footer({ onNavigate }) {
                     handleNavClick(link.path, link.anchor);
                   }}
                   data-cursor="Link"
-                  className="transition-colors hover:text-white flex items-center gap-1 group"
+                  className="transition-colors hover:text-zinc-950 dark:hover:text-white flex items-center gap-1 group"
                 >
                   <span className="text-xs group-hover:translate-x-0.5 transition-transform">{link.label}</span>
                 </a>
@@ -136,11 +145,11 @@ export function Footer({ onNavigate }) {
         </nav>
 
         {/* Quick Consultation Form */}
-        <div className="p-6 rounded-3xl glass-panel border-white/10 shadow-2xl">
-          <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+        <div className="p-6 rounded-3xl glass-panel border-black/10 dark:border-white/10 shadow-2xl">
+          <h3 className="font-display text-sm font-bold uppercase tracking-wider text-zinc-950 dark:text-white">
             Receba um Diagnóstico Gratuito
           </h3>
-          <p className="mt-1 text-xs text-zinc-400">
+          <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">
             Preencha e nossa especialista entrará em contato:
           </p>
 
@@ -157,7 +166,7 @@ export function Footer({ onNavigate }) {
                 autoComplete="name"
                 value={formData.nome}
                 onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                className="w-full rounded-xl border border-white/15 bg-[#121118] px-4 py-2.5 text-xs text-white placeholder:text-zinc-500 focus:border-purple-500 focus:outline-none transition-colors"
+                className="w-full rounded-xl border border-black/15 dark:border-white/15 bg-white dark:bg-[#121118] px-4 py-2.5 text-xs text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:border-purple-500 focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -172,7 +181,7 @@ export function Footer({ onNavigate }) {
                 autoComplete="tel"
                 value={formData.whatsapp}
                 onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
-                className="w-full rounded-xl border border-white/15 bg-[#121118] px-4 py-2.5 text-xs text-white placeholder:text-zinc-500 focus:border-purple-500 focus:outline-none transition-colors"
+                className="w-full rounded-xl border border-black/15 dark:border-white/15 bg-white dark:bg-[#121118] px-4 py-2.5 text-xs text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:border-purple-500 focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -183,10 +192,10 @@ export function Footer({ onNavigate }) {
                 id="footer-servico"
                 value={formData.servico}
                 onChange={(e) => setFormData({ ...formData, servico: e.target.value })}
-                className="w-full rounded-xl border border-white/15 bg-[#121118] px-4 py-2.5 text-xs text-white focus:border-purple-500 focus:outline-none transition-colors cursor-pointer"
+                className="w-full rounded-xl border border-black/15 dark:border-white/15 bg-white dark:bg-[#121118] px-4 py-2.5 text-xs text-zinc-900 dark:text-white focus:border-purple-500 focus:outline-none transition-colors cursor-pointer"
               >
                 {serviceOptions.map((opt) => (
-                  <option key={opt} value={opt} className="bg-[#121118] text-white">
+                  <option key={opt} value={opt} className="bg-white dark:bg-[#121118] text-zinc-900 dark:text-white">
                     {opt}
                   </option>
                 ))}
@@ -215,7 +224,7 @@ export function Footer({ onNavigate }) {
         </div>
       </div>
 
-      <div className="border-t border-white/10 py-6 text-center text-xs text-zinc-500">
+      <div className="border-t border-black/10 dark:border-white/10 py-6 text-center text-xs text-zinc-500 dark:text-zinc-500">
         © 2026 Orium Digital. Todos os direitos reservados. Feito com tecnologia de alta conversão.
       </div>
     </footer>

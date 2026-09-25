@@ -60,7 +60,7 @@ export function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#08070c] text-white selection:bg-purple-600/40 selection:text-white relative">
+    <div className="min-h-screen flex flex-col bg-[#faf8fd] text-zinc-900 dark:bg-[#08070c] dark:text-white selection:bg-purple-600/40 selection:text-white relative transition-colors duration-300">
       {/* Procedural Film Grain Overlay */}
       <div className="grain" aria-hidden="true" />
 
