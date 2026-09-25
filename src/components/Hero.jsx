@@ -116,9 +116,9 @@ export function Hero({ onNavigate }) {
             </span>
           </div>
 
-          {/* Split Headline with Syne Typography */}
-          <div ref={titleRef} className="font-display font-extrabold tracking-tight w-full px-2 sm:px-0">
-            <h1 className="text-[25px] xs:text-[30px] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.18] sm:leading-[1.08] text-white">
+          {/* Split Headline with Harmonized Manrope Typography */}
+          <div ref={titleRef} className="font-sans font-extrabold tracking-tight w-full px-2 sm:px-0">
+            <h1 className="font-sans font-extrabold text-[28px] xs:text-[34px] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.14] sm:leading-[1.08] text-white">
               Transformamos tráfego em{' '}
               <span className="text-gradient-purple inline-block">faturamento real</span> e previsível.
             </h1>
