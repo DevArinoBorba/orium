@@ -7,6 +7,7 @@ import FloatingWhatsApp from './components/FloatingWhatsApp';
 import SocialProofToast from './components/SocialProofToast';
 import ServiceModal from './components/ServiceModal';
 import CustomCursor from './components/CustomCursor';
+import Preloader from './components/Preloader';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -65,6 +66,9 @@ export function App() {
 
       {/* Fluid Dual-Ring Custom Cursor */}
       <CustomCursor />
+
+      {/* Awwwards Luxury Preloader */}
+      <Preloader />
 
       {/* Fixed Glass Navigation with Top Progress */}
       <Header currentPath={currentPath} onNavigate={handleNavigate} />

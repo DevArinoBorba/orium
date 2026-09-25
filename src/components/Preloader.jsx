@@ -5,12 +5,11 @@ export function Preloader({ onComplete }) {
   const containerRef = useRef(null);
   const countRef = useRef(null);
   const barRef = useRef(null);
-  const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
+  const wordRef = useRef(null);
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    // If reduced motion is requested, complete immediately
+    // If reduced motion is requested, finish immediately
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setHidden(true);
       if (onComplete) onComplete();
@@ -20,117 +19,163 @@ export function Preloader({ onComplete }) {
     const container = containerRef.current;
     const countEl = countRef.current;
     const bar = barRef.current;
-    const title = titleRef.current;
-    const subtitle = subtitleRef.current;
+    const wordEl = wordRef.current;
+
+    if (!container || !countEl || !bar) return;
+
+    // Safety timeout in case fonts or resources delay
+    const safetyTimer = setTimeout(() => {
+      if (container) {
+        gsap.to(container, {
+          opacity: 0,
+          duration: 0.5,
+          onComplete: () => {
+            setHidden(true);
+            if (onComplete) onComplete();
+          },
+        });
+      }
+    }, 4500);
 
     const counter = { val: 0 };
+    const charElements = wordEl ? wordEl.querySelectorAll('.pre-char') : [];
+
     const tl = gsap.timeline({
       onComplete: () => {
+        clearTimeout(safetyTimer);
         setHidden(true);
         if (onComplete) onComplete();
       },
     });
 
-    // Animate title and count
-    tl.fromTo(
-      [title, subtitle],
-      { opacity: 0, y: 30, filter: 'blur(10px)' },
-      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.8, stagger: 0.15, ease: 'power3.out' }
-    )
-    .to(
+    // Initial state
+    gsap.set(bar, { scaleX: 0 });
+
+    // 1. Reveal letters from bottom mask (similar to Thais Borges SplitText)
+    if (charElements.length > 0) {
+      tl.from(charElements, {
+        yPercent: 120,
+        stagger: 0.025,
+        duration: 1.1,
+        ease: 'expo.out',
+      });
+    }
+
+    // 2. Count 0 -> 100 and scale bar across bottom
+    tl.to(
       counter,
       {
         val: 100,
-        duration: 1.6,
+        duration: 1.9,
         ease: 'power2.inOut',
         onUpdate: () => {
-          if (countEl) countEl.textContent = `${Math.floor(counter.val)}%`;
+          if (countEl) countEl.textContent = Math.round(counter.val);
         },
       },
-      '-=0.4'
+      charElements.length > 0 ? 0.2 : 0
     )
     .to(
       bar,
       {
         scaleX: 1,
-        duration: 1.6,
+        duration: 1.9,
         ease: 'power2.inOut',
       },
-      '<'
+      charElements.length > 0 ? 0.2 : 0
     )
-    // Exit curtain animation
-    .to([title, subtitle, countEl], {
-      opacity: 0,
-      y: -20,
-      duration: 0.5,
-      ease: 'power2.in',
-    })
+    // 3. Luxurious curtain slide up revealing the hero section
     .to(container, {
       yPercent: -100,
-      duration: 0.9,
-      ease: 'expo.inOut',
-    });
+      duration: 1.1,
+      ease: 'power4.inOut',
+    }, '+=0.15');
 
     return () => {
+      clearTimeout(safetyTimer);
       tl.kill();
     };
   }, [onComplete]);
 
   if (hidden) return null;
 
+  const phraseWords = [
+    { text: 'Escalando', highlight: false },
+    { text: 'negócios', highlight: false },
+    { text: 'com', highlight: false },
+    { text: 'previsibilidade', highlight: true, italic: true },
+  ];
+
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[100] flex flex-col justify-between bg-[#07060a] p-8 md:p-14 text-white overflow-hidden"
+      id="preloader"
+      className="fixed inset-0 z-[100] flex flex-col justify-between bg-[#08070c] p-6 sm:p-10 text-white overflow-hidden"
+      aria-hidden="true"
       style={{ willChange: 'transform' }}
     >
-      {/* Top Bar */}
-      <div className="flex items-center justify-between text-xs uppercase tracking-[0.25em] text-purple-300/60 font-semibold">
-        <span className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-purple-500 animate-ping" />
-          Awwwards Standard Digital Agency
+      {/* Top Bar: Brand & Subtitle */}
+      <div className="flex items-center justify-between text-zinc-400 text-xs sm:text-sm font-medium tracking-wide">
+        <div className="flex items-center gap-2.5">
+          <span className="h-2 w-2 rounded-full bg-purple-500 animate-pulse shadow-[0_0_10px_#a855f7]" />
+          <span className="font-display font-bold tracking-wider text-white text-sm sm:text-base">
+            ORIUM DIGITAL
+          </span>
+        </div>
+        <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-zinc-400/80 font-semibold hidden xs:inline">
+          Estratégia & Performance
         </span>
-        <span className="hidden sm:inline">Experiência Imersiva</span>
       </div>
 
-      {/* Center Brand */}
-      <div className="flex flex-col items-center justify-center my-auto text-center px-4">
-        <h1
-          ref={titleRef}
-          className="font-display text-4xl sm:text-6xl md:text-8xl font-black tracking-tight text-gradient-purple"
-        >
-          ORIUM DIGITAL
-        </h1>
+      {/* Center Statement (Awwwards Mask Stagger) */}
+      <div className="my-auto py-8">
         <p
-          ref={subtitleRef}
-          className="mt-4 text-xs sm:text-sm uppercase tracking-[0.35em] text-zinc-400 font-medium max-w-lg"
+          ref={wordRef}
+          className="font-display text-center text-[clamp(2.2rem,7.5vw,6.5rem)] font-light leading-[1.05] tracking-tight text-white select-none"
         >
-          Estratégia • Tráfego Pago • Performance • Escala
+          {phraseWords.map((wordObj, wIdx) => (
+            <span key={wIdx} className="inline-block whitespace-nowrap mx-1.5 sm:mx-3">
+              {wordObj.text.split('').map((char, cIdx) => (
+                <span key={cIdx} className="inline-block overflow-hidden align-top">
+                  <span
+                    className={`pre-char inline-block ${
+                      wordObj.highlight
+                        ? 'italic font-serif text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-violet-400 to-indigo-300 font-normal pr-0.5'
+                        : 'text-zinc-100'
+                    }`}
+                  >
+                    {char}
+                  </span>
+                </span>
+              ))}
+            </span>
+          ))}
         </p>
       </div>
 
-      {/* Bottom Progress */}
-      <div className="relative flex items-end justify-between pt-6 border-t border-white/10">
-        <div>
-          <span className="text-[11px] uppercase tracking-widest text-zinc-500 block mb-1">
-            Status do Sistema
+      {/* Bottom Row: Colossal Counter and Status Label */}
+      <div className="relative flex items-end justify-between pb-2 sm:pb-3">
+        <div className="flex items-baseline select-none">
+          <span
+            ref={countRef}
+            className="pre-count font-display text-[clamp(4.5rem,18vw,14rem)] font-light leading-[0.75] text-white tracking-tighter tabular-nums"
+          >
+            0
           </span>
-          <span className="text-xs text-purple-300 font-medium">Carregando ecossistema de alta conversão...</span>
+          <span className="text-purple-400 font-display text-2xl sm:text-4xl font-light ml-1 select-none">
+            %
+          </span>
         </div>
-        <div
-          ref={countRef}
-          className="font-display text-5xl sm:text-7xl font-bold tracking-tight text-white tabular-nums"
-        >
-          0%
-        </div>
-
-        {/* Progress Line */}
-        <div
-          ref={barRef}
-          className="absolute bottom-0 left-0 h-[3px] w-full origin-left bg-gradient-to-r from-purple-600 via-fuchsia-500 to-indigo-400 shadow-[0_0_15px_rgba(168,85,247,0.8)]"
-          style={{ transform: 'scaleX(0)' }}
-        />
+        <span className="text-xs sm:text-sm uppercase tracking-[0.25em] text-zinc-400 font-medium pb-2 sm:pb-4 select-none">
+          carregando ecossistema
+        </span>
       </div>
+
+      {/* Bottom Edge Animated Progress Bar */}
+      <div
+        ref={barRef}
+        className="pre-bar absolute bottom-0 left-0 h-1 sm:h-1.5 w-full origin-left bg-gradient-to-r from-purple-600 via-fuchsia-400 to-indigo-400 shadow-[0_0_20px_rgba(168,85,247,0.7)]"
+        style={{ transform: 'scaleX(0)' }}
+      />
     </div>
   );
 }
