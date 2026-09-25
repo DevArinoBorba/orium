@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
-import { Calculator, ArrowRight, TrendingUp, Users, Eye, Sparkles, Copy, Check } from 'lucide-react';
+import {
+  Calculator,
+  ArrowRight,
+  TrendingUp,
+  Users,
+  Eye,
+  Sparkles,
+  Copy,
+  Check,
+  Zap,
+} from 'lucide-react';
 import { Reveal } from './Reveal';
+import { MagneticButton } from './MagneticButton';
+import { SpotlightCard } from './SpotlightCard';
 import { getWhatsAppLink } from '../data/siteData';
 
 const niches = [
@@ -58,7 +70,7 @@ export function TrafficCalculator() {
 
   const niche = niches.find((n) => n.id === selectedNicheId) || niches[0];
 
-  // Calculations
+  // Mathematical Projections
   const estimatedReach = Math.round((budget / niche.cpm) * 1000);
   const estimatedClicks = Math.round(budget / niche.cpc);
   const estimatedLeads = Math.round(estimatedClicks * niche.leadRate);
@@ -66,120 +78,117 @@ export function TrafficCalculator() {
   const potentialMax = Math.round(budget * niche.roasMax);
 
   const handleWhatsAppShare = () => {
-    const msg = `Olá, vim pelo site da Orium Digital e fiz uma simulação na Calculadora de Tráfego:\n\n• Segmento: ${niche.name}\n• Investimento pretendido: R$ ${budget.toLocaleString('pt-BR')}/mês\n• Estimativa de Leads: ${estimatedLeads} leads/mês\n• Potencial de Faturamento: R$ ${potentialMin.toLocaleString('pt-BR')} a R$ ${potentialMax.toLocaleString('pt-BR')}\n\nQuero agendar uma consultoria gratuita para montar esse plano para a minha empresa!`;
+    const msg = `Olá, vim pelo simulador no site da Orium Digital e fiz um cálculo de tráfego:\n\n• Segmento: ${niche.name}\n• Investimento pretendido: R$ ${budget.toLocaleString('pt-BR')}/mês\n• Estimativa de Leads: ${estimatedLeads} leads/mês\n• Potencial de Faturamento: R$ ${potentialMin.toLocaleString('pt-BR')} a R$ ${potentialMax.toLocaleString('pt-BR')}\n\nQuero agendar uma consultoria gratuita para montar esse plano para a minha empresa!`;
     window.open(getWhatsAppLink(msg), '_blank', 'noopener,noreferrer');
   };
 
   const handleCopySimulation = () => {
-    const text = `Simulação de Tráfego - Orium Digital\n• Segmento: ${niche.name}\n• Investimento: R$ ${budget.toLocaleString('pt-BR')}/mês\n• Alcance: ~${estimatedReach.toLocaleString('pt-BR')} pessoas\n• Cliques: ~${estimatedClicks.toLocaleString('pt-BR')} visitas\n• Oportunidades: ~${estimatedLeads} leads/mês\n• Faturamento Estimado: R$ ${potentialMin.toLocaleString('pt-BR')} a R$ ${potentialMax.toLocaleString('pt-BR')}`;
+    const text = `Simulação de Tráfego - Orium Digital\n• Segmento: ${niche.name}\n• Investimento: R$ ${budget.toLocaleString('pt-BR')}/mês\n• Alcance Estimado: ~${estimatedReach.toLocaleString('pt-BR')} pessoas\n• Visitas Qualificadas: ~${estimatedClicks.toLocaleString('pt-BR')}\n• Leads/Mês: ~${estimatedLeads}\n• Retorno Estimado: R$ ${potentialMin.toLocaleString('pt-BR')} a R$ ${potentialMax.toLocaleString('pt-BR')}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2200);
+    setTimeout(() => setCopied(false), 2400);
   };
 
   return (
-    <section id="calculadora" className="relative border-t border-border py-20 sm:py-24">
-      {/* Background glow */}
-      <div
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            'radial-gradient(50% 50% at 50% 50%, color-mix(in oklab, var(--primary-deep) 22%, transparent), transparent 70%)',
-        }}
-      />
+    <section id="simulador" className="relative py-28 border-t border-white/10 overflow-hidden">
+      {/* Dynamic Glow */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] rounded-full bg-purple-600/15 blur-[160px]" />
+      </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Reveal className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-accent/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary-glow">
+        <Reveal className="mx-auto max-w-3xl text-center mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-purple-300">
             <Calculator className="h-3.5 w-3.5" />
-            Simulador de Crescimento
+            Simulador de Crescimento & ROI
           </div>
-          <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl">
-            Descubra o potencial de retorno do seu{' '}
+          <h2 className="mt-3 font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+            Descubra o potencial do seu{' '}
             <span className="text-gradient-purple">Tráfego Pago</span>
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            Selecione o seu segmento e quanto pretende investir para visualizar uma
-            estimativa baseada nas médias de performance da Orium Digital.
+          <p className="mt-4 text-base text-zinc-300 leading-relaxed max-w-2xl mx-auto">
+            Ajuste seu segmento e orçamento para visualizar uma projeção realista baseada nas métricas de performance e inteligência de dados da Orium.
           </p>
         </Reveal>
 
-        <div className="mx-auto mt-12 max-w-4xl grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="mx-auto max-w-5xl grid gap-8 lg:grid-cols-[1.1fr_0.9fr] items-stretch">
           {/* Controls Card */}
           <Reveal>
-            <div className="glass-panel h-full rounded-3xl p-6 sm:p-8 space-y-6">
-              <div>
-                <label htmlFor="calculator-niche" className="block text-sm font-semibold text-foreground">
-                  1. Qual é o segmento da sua empresa?
-                </label>
-                <select
-                  id="calculator-niche"
-                  value={selectedNicheId}
-                  onChange={(e) => setSelectedNicheId(e.target.value)}
-                  className="mt-2.5 w-full rounded-xl border border-input bg-surface px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none transition-colors cursor-pointer"
-                >
-                  {niches.map((item) => (
-                    <option key={item.id} value={item.id} className="bg-surface text-foreground">
-                      {item.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <div className="flex items-center justify-between">
-                  <label htmlFor="calculator-budget" className="text-sm font-semibold text-foreground">
-                    2. Quanto você planeja investir por mês?
+            <div className="glass-panel h-full rounded-3xl p-6 sm:p-9 space-y-7 border-white/10 shadow-2xl flex flex-col justify-between">
+              <div className="space-y-6">
+                <div>
+                  <label htmlFor="calculator-niche" className="block text-sm font-bold text-white mb-2">
+                    1. Segmento da sua empresa
                   </label>
-                  <span className="font-display text-lg font-bold text-primary-glow">
-                    R$ {budget.toLocaleString('pt-BR')}
-                  </span>
+                  <select
+                    id="calculator-niche"
+                    value={selectedNicheId}
+                    onChange={(e) => setSelectedNicheId(e.target.value)}
+                    className="w-full rounded-2xl border border-white/15 bg-[#121118] px-4 py-3.5 text-sm text-white focus:border-purple-500 focus:outline-none transition-colors cursor-pointer"
+                  >
+                    {niches.map((item) => (
+                      <option key={item.id} value={item.id} className="bg-[#121118] text-white">
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
-                {/* Quick Budget Presets */}
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {[2000, 5000, 10000, 20000].map((preset) => (
-                    <button
-                      key={preset}
-                      type="button"
-                      onClick={() => setBudget(preset)}
-                      className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors cursor-pointer ${
-                        budget === preset
-                          ? 'bg-primary text-primary-foreground shadow-glow'
-                          : 'border border-border/80 bg-surface/80 text-muted-foreground hover:text-foreground hover:bg-white/5'
-                      }`}
-                    >
-                      R$ {(preset / 1000).toFixed(0)}k/mês
-                    </button>
-                  ))}
-                </div>
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <label htmlFor="calculator-budget" className="text-sm font-bold text-white">
+                      2. Investimento mensal em anúncios
+                    </label>
+                    <span className="font-display text-xl font-extrabold text-gradient-purple tabular-nums">
+                      R$ {budget.toLocaleString('pt-BR')}
+                    </span>
+                  </div>
 
-                <input
-                  id="calculator-budget"
-                  aria-label="Orçamento mensal de investimento em tráfego pago"
-                  type="range"
-                  min={1000}
-                  max={30000}
-                  step={500}
-                  value={budget}
-                  onChange={(e) => setBudget(Number(e.target.value))}
-                  className="mt-4 w-full accent-primary cursor-pointer h-2 bg-surface rounded-lg"
-                />
-                <div className="mt-2 flex justify-between text-xs text-muted-foreground">
-                  <span>R$ 1.000/mês</span>
-                  <span>R$ 15.000/mês</span>
-                  <span>R$ 30.000/mês+</span>
+                  {/* Preset Pills */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {[2000, 3000, 5000, 10000, 20000].map((preset) => (
+                      <button
+                        key={preset}
+                        type="button"
+                        onClick={() => setBudget(preset)}
+                        className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition-all cursor-pointer ${
+                          budget === preset
+                            ? 'bg-purple-600 text-white shadow-[0_0_15px_rgba(168,85,247,0.5)] scale-105'
+                            : 'border border-white/10 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10'
+                        }`}
+                      >
+                        R$ {(preset / 1000).toFixed(0)}k/mês
+                      </button>
+                    ))}
+                  </div>
+
+                  <input
+                    id="calculator-budget"
+                    aria-label="Orçamento mensal de investimento em tráfego pago"
+                    type="range"
+                    min={1000}
+                    max={30000}
+                    step={500}
+                    value={budget}
+                    onChange={(e) => setBudget(Number(e.target.value))}
+                    className="w-full accent-purple-500 cursor-pointer h-2 bg-white/10 rounded-lg"
+                  />
+                  <div className="mt-2 flex justify-between text-[11px] text-zinc-500 font-medium">
+                    <span>R$ 1.000</span>
+                    <span>R$ 15.000</span>
+                    <span>R$ 30.000+</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-border/80 bg-card/60 p-4">
-                <div className="flex items-center gap-2 text-xs font-semibold text-primary-glow">
-                  <Sparkles className="h-4 w-4" />
-                  Estratégia personalizada Orium:
+              {/* Information pill */}
+              <div className="rounded-2xl border border-purple-500/20 bg-purple-500/10 p-4">
+                <div className="flex items-center gap-2 text-xs font-bold text-purple-300">
+                  <Sparkles className="h-4 w-4 text-purple-400" />
+                  Estratégia Multicanal Orium
                 </div>
-                <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">
-                  Campanhas combinadas em Google Ads, Meta Ads e criativos de alta
-                  conversão para maximizar o número de clientes pagantes.
+                <p className="mt-1 text-xs text-zinc-300 leading-relaxed font-normal">
+                  Campanhas integradas em Google Ads, Meta Ads e TikTok com páginas de alta conversão para atrair quem realmente tem dinheiro e interesse em comprar.
                 </p>
               </div>
             </div>
@@ -187,93 +196,103 @@ export function TrafficCalculator() {
 
           {/* Results Projection Card */}
           <Reveal delay={120}>
-            <div className="glass-panel h-full rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-primary/40 shadow-glow">
+            <SpotlightCard
+              tiltStrength={8}
+              dataCursor="Resultados"
+              className="h-full rounded-3xl p-6 sm:p-9 flex flex-col justify-between border-purple-500/40 bg-gradient-to-br from-purple-950/40 via-[#0e0d15]/90 to-[#07060b] shadow-[0_20px_50px_-15px_rgba(168,85,247,0.3)]"
+            >
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-primary-glow">
-                    Projeção Mensal Estimada
+                  <span className="text-xs font-semibold uppercase tracking-wider text-purple-300">
+                    Projeção de Performance
                   </span>
-                  <span className="inline-flex items-center gap-1 rounded-full border border-primary/40 bg-accent/60 px-2.5 py-0.5 text-xs font-semibold text-primary-glow">
-                    <Sparkles className="h-3 w-3" />
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-purple-500/30 bg-purple-500/20 px-3 py-1 text-xs font-bold text-purple-200">
+                    <Zap className="h-3.5 w-3.5 text-purple-300" />
                     ROAS {niche.roasMin}x – {niche.roasMax}x
                   </span>
                 </div>
-                <h3 className="font-display text-xl font-bold mt-1.5 text-foreground">
-                  Resultados Esperados
+
+                <h3 className="font-display text-2xl font-bold mt-2 text-white">
+                  Métricas Estimadas
                 </h3>
 
                 <div className="mt-6 grid grid-cols-2 gap-4">
-                  <div className="rounded-2xl border border-border bg-card/60 p-4">
-                    <div className="flex items-center gap-2 text-muted-foreground text-xs">
-                      <Eye className="h-3.5 w-3.5 text-primary-glow" />
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                    <div className="flex items-center gap-2 text-zinc-400 text-xs">
+                      <Eye className="h-4 w-4 text-purple-400" />
                       <span>Alcance</span>
                     </div>
-                    <p className="font-display text-lg font-bold text-foreground mt-1">
+                    <p className="font-display text-xl sm:text-2xl font-bold text-white mt-1.5 tabular-nums">
                       {estimatedReach.toLocaleString('pt-BR')}+
                     </p>
-                    <span className="text-xs text-muted-foreground">pessoas impactadas</span>
+                    <span className="text-[11px] text-zinc-500">pessoas impactadas</span>
                   </div>
 
-                  <div className="rounded-2xl border border-border bg-card/60 p-4">
-                    <div className="flex items-center gap-2 text-muted-foreground text-xs">
-                      <Users className="h-3.5 w-3.5 text-primary-glow" />
-                      <span>Cliques no anúncio</span>
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                    <div className="flex items-center gap-2 text-zinc-400 text-xs">
+                      <Users className="h-4 w-4 text-purple-400" />
+                      <span>Visitas / Cliques</span>
                     </div>
-                    <p className="font-display text-lg font-bold text-foreground mt-1">
+                    <p className="font-display text-xl sm:text-2xl font-bold text-white mt-1.5 tabular-nums">
                       {estimatedClicks.toLocaleString('pt-BR')}+
                     </p>
-                    <span className="text-xs text-muted-foreground">visitas qualificadas</span>
+                    <span className="text-[11px] text-zinc-500">visitas qualificadas</span>
                   </div>
 
-                  <div className="col-span-2 rounded-2xl border border-primary/40 bg-accent/30 p-4">
+                  {/* Highlights Banner */}
+                  <div className="col-span-2 rounded-2xl border border-purple-500/30 bg-purple-500/15 p-5">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-xs font-medium text-primary-glow">
-                        <TrendingUp className="h-4 w-4" />
-                        <span>Estimativa de Oportunidades / Leads:</span>
+                      <div className="flex items-center gap-2 text-xs font-semibold text-purple-300">
+                        <TrendingUp className="h-4 w-4 text-purple-400" />
+                        <span>Estimativa de Leads Qualificados:</span>
                       </div>
-                      <span className="font-display text-xl font-bold text-primary-glow">
+                      <span className="font-display text-2xl font-black text-white tabular-nums">
                         ~{estimatedLeads} leads/mês
                       </span>
                     </div>
-                    <p className="text-xs text-muted-foreground mt-2">
-                      Potencial de faturamento projetado:{' '}
-                      <strong className="text-foreground">
+
+                    <div className="mt-3 pt-3 border-t border-purple-500/20 text-xs text-zinc-300 flex items-center justify-between">
+                      <span>Potencial faturamento estimado:</span>
+                      <strong className="text-white font-bold text-sm text-gradient-purple">
                         R$ {potentialMin.toLocaleString('pt-BR')} a R$ {potentialMax.toLocaleString('pt-BR')}
                       </strong>
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 space-y-2.5">
-                <button
-                  type="button"
+              {/* Actions */}
+              <div className="mt-8 space-y-3">
+                <MagneticButton
+                  strength={0.3}
                   onClick={handleWhatsAppShare}
-                  className="btn-hero w-full py-3.5 text-sm flex items-center justify-center gap-2 cursor-pointer"
+                  dataCursor="Alcançar Meta"
+                  className="btn-hero w-full py-4 text-sm font-bold flex items-center justify-center gap-2 shadow-glow"
                 >
-                  Quero alcançar essa meta no WhatsApp
+                  <span>Quero alcançar essa meta no WhatsApp</span>
                   <ArrowRight className="h-4 w-4" />
-                </button>
+                </MagneticButton>
 
                 <button
                   type="button"
                   onClick={handleCopySimulation}
-                  className="btn-outline-hero w-full py-2.5 text-xs flex items-center justify-center gap-2 cursor-pointer text-muted-foreground hover:text-foreground"
+                  data-cursor="Copiar"
+                  className="w-full py-2.5 rounded-full text-xs font-medium text-zinc-400 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors flex items-center justify-center gap-2 cursor-pointer"
                 >
                   {copied ? (
                     <>
-                      <Check className="h-3.5 w-3.5 text-emerald-400" />
+                      <Check className="h-4 w-4 text-emerald-400" />
                       <span className="text-emerald-400 font-semibold">Resumo da simulação copiado!</span>
                     </>
                   ) : (
                     <>
-                      <Copy className="h-3.5 w-3.5" />
+                      <Copy className="h-4 w-4" />
                       <span>Copiar resumo da simulação</span>
                     </>
                   )}
                 </button>
               </div>
-            </div>
+            </SpotlightCard>
           </Reveal>
         </div>
       </div>

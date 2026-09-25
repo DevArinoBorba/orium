@@ -1,9 +1,30 @@
-import React, { useState } from 'react';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X, ArrowRight, Sparkles } from 'lucide-react';
 import { getWhatsAppLink } from '../data/siteData';
+import { MagneticButton } from './MagneticButton';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Header({ currentPath = '/', onNavigate }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const progressBarRef = useRef(null);
+
+  useEffect(() => {
+    const bar = progressBarRef.current;
+    if (!bar) return;
+
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
+      bar.style.transform = `scaleX(${progress})`;
+    };
+
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    return () => window.removeEventListener('scroll', updateScrollProgress);
+  }, []);
 
   const handleNavClick = (path, anchor) => {
     setMobileMenuOpen(false);
@@ -15,90 +36,113 @@ export function Header({ currentPath = '/', onNavigate }) {
   const navItems = [
     { label: 'Início', path: '/', anchor: 'inicio' },
     { label: 'Serviços', path: '/', anchor: 'servicos' },
-    { label: 'Benefícios', path: '/', anchor: 'beneficios' },
-    { label: 'Clientes', path: '/', anchor: 'clientes' },
-    { label: 'FAQ', path: '/', anchor: 'faq' },
+    { label: 'Marcas', path: '/', anchor: 'marcas' },
+    { label: 'Performance', path: '/', anchor: 'simulador' },
+    { label: 'Método', path: '/', anchor: 'metodologia' },
     { label: 'Sobre', path: '/sobre' },
     { label: 'Contato', path: '/contato' },
   ];
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 glass-panel border-x-0 border-t-0">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        {/* Brand Logo */}
-        <a
-          href="/"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavClick('/', 'inicio');
-          }}
-          className="flex shrink-0 items-center cursor-pointer"
-        >
-          <picture>
-            <source type="image/webp" srcSet="/assets/logo-horizontal.webp" />
-            <img
-              src="/assets/logo-horizontal.png"
-              alt="Orium Digital"
-              width="160"
-              height="40"
-              decoding="async"
-              className="h-9 w-auto sm:h-10 transition-transform hover:scale-105"
-            />
-          </picture>
-        </a>
+    <header className="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+      {/* Scroll Progress Bar */}
+      <div
+        ref={progressBarRef}
+        className="absolute inset-x-0 top-0 h-[2.5px] origin-left bg-gradient-to-r from-purple-600 via-fuchsia-400 to-indigo-300 shadow-[0_0_12px_rgba(168,85,247,0.9)] z-50 pointer-events-none"
+        style={{ transform: 'scaleX(0)', willChange: 'transform' }}
+      />
 
-        {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-7 lg:flex">
-          {navItems.map((item) => {
-            const isActive =
-              (item.path === currentPath && !item.anchor) ||
-              (currentPath === '/' && item.path === '/' && item.anchor === 'inicio');
-
-            return (
-              <a
-                key={item.label}
-                href={item.anchor ? `${item.path}#${item.anchor}` : item.path}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.path, item.anchor);
-                }}
-                className={`text-sm font-medium transition-colors hover:text-foreground cursor-pointer ${
-                  currentPath === item.path && !item.anchor
-                    ? 'text-foreground font-semibold'
-                    : 'text-muted-foreground'
-                }`}
-              >
-                {item.label}
-              </a>
-            );
-          })}
-        </nav>
-
-        {/* CTA & Mobile Toggle */}
-        <div className="flex items-center gap-3">
-          <a
-            href={getWhatsAppLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-hero hidden px-5 py-2.5 text-sm md:inline-flex"
+      {/* Main Glass Bar */}
+      <div className="glass-panel border-x-0 border-t-0 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)]">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+          {/* Brand Logo with Magnetic Hover */}
+          <MagneticButton
+            strength={0.25}
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('/', 'inicio');
+            }}
+            dataCursor="Orium"
+            ariaLabel="Página inicial Orium Digital"
+            className="flex shrink-0 items-center cursor-pointer"
           >
-            Agendar consultoria
-          </a>
+            <picture>
+              <source type="image/webp" srcSet="/assets/logo-horizontal.webp" />
+              <img
+                src="/assets/logo-horizontal.png"
+                alt="Orium Digital"
+                width="160"
+                height="40"
+                decoding="async"
+                className="h-9 w-auto sm:h-10 transition-transform duration-300 hover:scale-105 filter drop-shadow-[0_0_15px_rgba(168,85,247,0.3)]"
+              />
+            </picture>
+          </MagneticButton>
 
-          <button
-            type="button"
-            aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground lg:hidden hover:bg-white/5 transition-colors"
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          {/* Desktop Navigation */}
+          <nav className="hidden items-center gap-7 lg:flex">
+            {navItems.map((item) => {
+              const isActive =
+                (item.path === currentPath && !item.anchor) ||
+                (currentPath === '/' && item.path === '/' && item.anchor === 'inicio');
+
+              return (
+                <a
+                  key={item.label}
+                  href={item.anchor ? `${item.path}#${item.anchor}` : item.path}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.path, item.anchor);
+                  }}
+                  data-cursor="Navegar"
+                  className={`relative text-sm font-medium transition-colors hover:text-white cursor-pointer py-1 group ${
+                    isActive ? 'text-white font-semibold' : 'text-zinc-400'
+                  }`}
+                >
+                  {item.label}
+                  <span
+                    className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-purple-400 to-fuchsia-400 transition-all duration-300 ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
+                </a>
+              );
+            })}
+          </nav>
+
+          {/* Status Badge + Magnetic CTA */}
+          <div className="flex items-center gap-4">
+
+            {/* Magnetic CTA Button */}
+            <MagneticButton
+              strength={0.35}
+              href={getWhatsAppLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              dataCursor="WhatsApp"
+              className="btn-hero hidden px-6 py-2.5 text-sm md:inline-flex shadow-glow"
+            >
+              <Sparkles className="h-4 w-4 text-purple-200" />
+              Agendar Consultoria
+            </MagneticButton>
+
+            {/* Mobile Hamburger Toggle */}
+            <button
+              type="button"
+              aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-white lg:hidden hover:bg-white/10 transition-colors"
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden glass-panel border-x-0 border-b border-border/80 px-6 py-6 animate-in fade-in duration-200">
+        <div className="lg:hidden glass-panel border-x-0 border-b border-white/10 px-6 py-6 animate-in fade-in slide-in-from-top-4 duration-200">
           <nav className="flex flex-col space-y-4">
             {navItems.map((item) => (
               <a
@@ -108,23 +152,24 @@ export function Header({ currentPath = '/', onNavigate }) {
                   e.preventDefault();
                   handleNavClick(item.path, item.anchor);
                 }}
-                className={`text-base font-medium py-1 transition-colors hover:text-primary-glow ${
+                className={`text-base font-medium py-1 transition-colors hover:text-purple-300 ${
                   currentPath === item.path && !item.anchor
-                    ? 'text-primary-glow font-bold'
-                    : 'text-muted-foreground'
+                    ? 'text-purple-300 font-bold'
+                    : 'text-zinc-400'
                 }`}
               >
                 {item.label}
               </a>
             ))}
-            <div className="pt-4 border-t border-border/50">
+            <div className="pt-4 border-t border-white/10">
               <a
                 href={getWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-hero w-full py-3 text-sm flex items-center justify-center gap-2"
+                className="btn-hero w-full py-3.5 text-sm flex items-center justify-center gap-2"
               >
-                Agendar consultoria gratuita
+                <Sparkles className="h-4 w-4" />
+                Agendar Consultoria Gratuita
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>

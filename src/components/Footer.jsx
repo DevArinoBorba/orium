@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Instagram, Send, Sparkles } from 'lucide-react';
+import { Phone, Instagram, Send, Sparkles, MapPin, ArrowUpRight } from 'lucide-react';
 import {
   WHATSAPP_DISPLAY,
   INSTAGRAM_HANDLE,
@@ -8,6 +8,7 @@ import {
   serviceOptions,
   trackEvent,
 } from '../data/siteData';
+import { MagneticButton } from './MagneticButton';
 
 export function Footer({ onNavigate }) {
   const [formData, setFormData] = useState({
@@ -28,16 +29,19 @@ export function Footer({ onNavigate }) {
     setIsSubmitting(true);
     trackEvent('Lead', { source: 'footer_form' });
     const msg = `Olá, vim pelo site da Orium Digital e quero agendar uma consultoria gratuita.\n\nNome: ${formData.nome}\nWhatsApp: ${formData.whatsapp}\nServiço de interesse: ${formData.servico}`;
-    
+
     setTimeout(() => {
       window.open(getWhatsAppLink(msg), '_blank', 'noopener,noreferrer');
       setIsSubmitting(false);
-    }, 450);
+    }, 400);
   };
 
   return (
-    <footer className="border-t border-border bg-background">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr_1fr] lg:px-8">
+    <footer className="border-t border-white/10 bg-[#07060a] relative overflow-hidden">
+      {/* Background Accent */}
+      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-purple-900/10 blur-[150px] -z-10" />
+
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.3fr_0.8fr_1fr] lg:px-8">
         {/* Brand info */}
         <div>
           <picture>
@@ -49,203 +53,161 @@ export function Footer({ onNavigate }) {
               height="48"
               loading="lazy"
               decoding="async"
-              className="h-12 w-auto"
+              className="h-11 w-auto"
             />
           </picture>
-          <p className="mt-4 text-sm tracking-widest text-primary-glow font-medium">
+
+          <p className="mt-4 text-xs tracking-[0.25em] text-purple-300 font-semibold uppercase">
             Estratégia • Tráfego • Conversão • Escala
           </p>
 
-          <div className="mt-6 space-y-3 text-sm text-muted-foreground">
+          <p className="mt-3 text-sm text-zinc-400 max-w-sm leading-relaxed">
+            Agência de marketing digital de alta performance especializada em atrair clientes qualificados e multiplicar o faturamento de empresas em todo o Brasil.
+          </p>
+
+          <div className="mt-6 space-y-3 text-sm text-zinc-400 font-medium">
             <a
               href={getWhatsAppLink()}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent('Contact', { source: 'footer_whatsapp' })}
-              className="flex items-center gap-2 transition-colors hover:text-foreground"
+              data-cursor="WhatsApp"
+              className="flex items-center gap-2.5 transition-colors hover:text-white"
             >
-              <Phone className="h-4 w-4 shrink-0 text-primary-glow" />
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-purple-500/15 text-purple-300">
+                <Phone className="h-4 w-4" />
+              </div>
               <span>WhatsApp: {WHATSAPP_DISPLAY}</span>
             </a>
+
             <a
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent('Contact', { source: 'footer_instagram' })}
-              className="flex items-center gap-2 transition-colors hover:text-foreground"
+              data-cursor="Instagram"
+              className="flex items-center gap-2.5 transition-colors hover:text-white"
             >
-              <Instagram className="h-4 w-4 shrink-0 text-primary-glow" />
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-purple-500/15 text-purple-300">
+                <Instagram className="h-4 w-4" />
+              </div>
               <span>{INSTAGRAM_HANDLE}</span>
             </a>
+
+            <div className="flex items-center gap-2.5 text-zinc-500 text-xs">
+              <MapPin className="h-4 w-4 text-purple-400" />
+              <span>Atendimento Digital para Todo o Brasil & Exterior</span>
+            </div>
           </div>
         </div>
 
         {/* Quick Links */}
         <nav className="text-sm">
-          <h3 className="font-display text-sm font-semibold uppercase tracking-widest text-foreground">
-            Navegação
+          <h3 className="font-display text-xs font-bold uppercase tracking-[0.2em] text-purple-300">
+            Navegação Rápida
           </h3>
-          <ul className="mt-4 grid grid-cols-2 gap-y-2.5 gap-x-4 text-muted-foreground">
-            <li>
-              <a
-                href="/#inicio"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('/', 'inicio');
-                }}
-                className="transition-colors hover:text-foreground cursor-pointer"
-              >
-                Início
-              </a>
-            </li>
-            <li>
-              <a
-                href="/#servicos"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('/', 'servicos');
-                }}
-                className="transition-colors hover:text-foreground cursor-pointer"
-              >
-                Serviços
-              </a>
-            </li>
-            <li>
-              <a
-                href="/#metodologia"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('/', 'metodologia');
-                }}
-                className="transition-colors hover:text-foreground cursor-pointer"
-              >
-                Metodologia
-              </a>
-            </li>
-            <li>
-              <a
-                href="/#calculadora"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('/', 'calculadora');
-                }}
-                className="transition-colors hover:text-foreground cursor-pointer"
-              >
-                Calculadora
-              </a>
-            </li>
-            <li>
-              <a
-                href="/#depoimentos"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('/', 'depoimentos');
-                }}
-                className="transition-colors hover:text-foreground cursor-pointer"
-              >
-                Depoimentos
-              </a>
-            </li>
-            <li>
-              <a
-                href="/#clientes"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('/', 'clientes');
-                }}
-                className="transition-colors hover:text-foreground cursor-pointer"
-              >
-                Clientes
-              </a>
-            </li>
-            <li>
-              <a
-                href="/sobre"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('/sobre');
-                }}
-                className="transition-colors hover:text-foreground cursor-pointer"
-              >
-                Sobre
-              </a>
-            </li>
-            <li>
-              <a
-                href="/contato"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('/contato');
-                }}
-                className="transition-colors hover:text-foreground cursor-pointer"
-              >
-                Contato
-              </a>
-            </li>
+          <ul className="mt-5 grid grid-cols-2 gap-y-3 gap-x-4 text-zinc-400">
+            {[
+              { label: 'Início', path: '/', anchor: 'inicio' },
+              { label: 'Serviços', path: '/', anchor: 'servicos' },
+              { label: 'Marcas', path: '/', anchor: 'marcas' },
+              { label: 'Performance', path: '/', anchor: 'simulador' },
+              { label: 'Metodologia', path: '/', anchor: 'metodologia' },
+              { label: 'Depoimentos', path: '/', anchor: 'depoimentos' },
+              { label: 'FAQ', path: '/', anchor: 'faq' },
+              { label: 'Sobre a Orium', path: '/sobre' },
+              { label: 'Fale Conosco', path: '/contato' },
+            ].map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.anchor ? `${link.path}#${link.anchor}` : link.path}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(link.path, link.anchor);
+                  }}
+                  data-cursor="Link"
+                  className="transition-colors hover:text-white flex items-center gap-1 group"
+                >
+                  <span className="text-xs group-hover:translate-x-0.5 transition-transform">{link.label}</span>
+                </a>
+              </li>
+            ))}
           </ul>
         </nav>
 
         {/* Quick Consultation Form */}
-        <div>
-          <h3 className="font-display text-sm font-semibold uppercase tracking-widest text-foreground">
-            Agende sua consultoria
+        <div className="p-6 rounded-3xl glass-panel border-white/10 shadow-2xl">
+          <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+            Receba um Diagnóstico Gratuito
           </h3>
+          <p className="mt-1 text-xs text-zinc-400">
+            Preencha e nossa especialista entrará em contato:
+          </p>
+
           <form onSubmit={handleSubmit} className="mt-4 space-y-3">
             <div>
-              <label htmlFor="footer-nome" className="sr-only">Seu nome</label>
+              <label htmlFor="footer-nome" className="sr-only">
+                Seu nome
+              </label>
               <input
                 id="footer-nome"
                 required
                 type="text"
-                placeholder="Seu nome"
+                placeholder="Seu nome completo"
                 autoComplete="name"
                 value={formData.nome}
                 onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                className="w-full rounded-xl border border-input bg-surface px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors"
+                className="w-full rounded-xl border border-white/15 bg-[#121118] px-4 py-2.5 text-xs text-white placeholder:text-zinc-500 focus:border-purple-500 focus:outline-none transition-colors"
               />
             </div>
             <div>
-              <label htmlFor="footer-whatsapp" className="sr-only">Seu WhatsApp</label>
+              <label htmlFor="footer-whatsapp" className="sr-only">
+                Seu WhatsApp
+              </label>
               <input
                 id="footer-whatsapp"
                 required
                 type="tel"
-                placeholder="WhatsApp com DDD"
+                placeholder="Seu WhatsApp com DDD"
                 autoComplete="tel"
                 value={formData.whatsapp}
                 onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
-                className="w-full rounded-xl border border-input bg-surface px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors"
+                className="w-full rounded-xl border border-white/15 bg-[#121118] px-4 py-2.5 text-xs text-white placeholder:text-zinc-500 focus:border-purple-500 focus:outline-none transition-colors"
               />
             </div>
             <div>
-              <label htmlFor="footer-servico" className="sr-only">Serviço de interesse</label>
+              <label htmlFor="footer-servico" className="sr-only">
+                Serviço de interesse
+              </label>
               <select
                 id="footer-servico"
                 value={formData.servico}
                 onChange={(e) => setFormData({ ...formData, servico: e.target.value })}
-                className="w-full rounded-xl border border-input bg-surface px-4 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none transition-colors"
+                className="w-full rounded-xl border border-white/15 bg-[#121118] px-4 py-2.5 text-xs text-white focus:border-purple-500 focus:outline-none transition-colors cursor-pointer"
               >
                 {serviceOptions.map((opt) => (
-                  <option key={opt} value={opt} className="bg-surface text-foreground">
+                  <option key={opt} value={opt} className="bg-[#121118] text-white">
                     {opt}
                   </option>
                 ))}
               </select>
             </div>
+
             <button
               type="submit"
               disabled={isSubmitting}
-              className="btn-hero w-full px-5 py-3 text-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-80"
+              data-cursor="Enviar"
+              className="btn-hero w-full px-5 py-3 text-xs font-bold flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70 shadow-glow"
             >
               {isSubmitting ? (
                 <>
-                  <span>Redirecionando...</span>
-                  <Sparkles className="h-4 w-4 animate-spin text-primary-glow" />
+                  <span>Conectando...</span>
+                  <Sparkles className="h-3.5 w-3.5 animate-spin text-purple-200" />
                 </>
               ) : (
                 <>
-                  <span>Agendar consultoria gratuita</span>
-                  <Send className="h-4 w-4" />
+                  <span>Enviar e Agendar Diagnóstico</span>
+                  <Send className="h-3.5 w-3.5" />
                 </>
               )}
             </button>
@@ -253,8 +215,8 @@ export function Footer({ onNavigate }) {
         </div>
       </div>
 
-      <div className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-        © 2026 Orium Digital. Todos os direitos reservados.
+      <div className="border-t border-white/10 py-6 text-center text-xs text-zinc-500">
+        © 2026 Orium Digital. Todos os direitos reservados. Feito com tecnologia de alta conversão.
       </div>
     </footer>
   );

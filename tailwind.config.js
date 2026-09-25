@@ -44,7 +44,8 @@ export default {
       },
       fontFamily: {
         sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['Sora', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Syne', 'Sora', 'system-ui', '-apple-system', 'sans-serif'],
+        heading: ['Sora', 'system-ui', '-apple-system', 'sans-serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',

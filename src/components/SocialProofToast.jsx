@@ -41,7 +41,7 @@ export function SocialProofToast() {
     <aside
       aria-live="polite"
       aria-label="Atividades recentes"
-      className="fixed bottom-6 left-6 z-40 max-w-xs sm:max-w-sm glass-panel border-primary/30 rounded-2xl p-4 shadow-2xl animate-in slide-in-from-bottom-5 duration-300"
+      className="fixed bottom-20 sm:bottom-6 left-4 sm:left-6 z-40 max-w-[calc(100vw-2rem)] sm:max-w-sm glass-panel border-primary/30 rounded-2xl p-4 shadow-2xl animate-in slide-in-from-bottom-5 duration-300"
     >
       <div className="flex items-start gap-3">
         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent text-primary-glow shadow-glow">
