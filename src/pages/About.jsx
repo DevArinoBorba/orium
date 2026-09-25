@@ -21,7 +21,7 @@ export function About() {
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary-glow">
               Nossa história
             </p>
-            <h1 className="mt-4 font-display text-4xl font-bold sm:text-5xl">
+            <h1 className="mt-4 font-display text-2xl xs:text-3xl sm:text-5xl font-bold">
               Sobre a <span className="text-gradient-purple">Orium Digital</span>
             </h1>
             <p className="mt-5 text-lg text-muted-foreground">

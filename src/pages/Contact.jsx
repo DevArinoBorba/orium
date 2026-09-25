@@ -77,7 +77,7 @@ export function Contact() {
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary-glow">
               Contato
             </p>
-            <h1 className="mt-4 font-display text-4xl font-bold leading-tight sm:text-5xl">
+            <h1 className="mt-4 font-display text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
               Vamos criar uma estratégia para o{' '}
               <span className="text-gradient-purple">
                 crescimento da sua empresa?

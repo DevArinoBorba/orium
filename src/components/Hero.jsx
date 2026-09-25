@@ -108,17 +108,17 @@ export function Hero({ onNavigate }) {
           {/* Tagline Badge */}
           <div
             ref={badgeRef}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-md shadow-[0_0_25px_rgba(168,85,247,0.2)] mb-6"
+            className="inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-md shadow-[0_0_25px_rgba(168,85,247,0.2)] mb-5 sm:mb-6 max-w-full"
           >
-            <Sparkles className="h-3.5 w-3.5 text-purple-300 animate-pulse" />
-            <span className="text-xs uppercase tracking-[0.25em] font-semibold text-purple-200">
+            <Sparkles className="h-3.5 w-3.5 text-purple-300 animate-pulse shrink-0" />
+            <span className="text-[10px] sm:text-xs uppercase tracking-[0.18em] sm:tracking-[0.25em] font-semibold text-purple-200 truncate">
               Performance & Escala Digital
             </span>
           </div>
 
           {/* Split Headline with Syne Typography */}
-          <div ref={titleRef} className="font-display font-extrabold tracking-tight">
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl leading-[1.08] text-white">
+          <div ref={titleRef} className="font-display font-extrabold tracking-tight w-full px-2 sm:px-0">
+            <h1 className="text-[25px] xs:text-[30px] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.18] sm:leading-[1.08] text-white">
               Transformamos tráfego em{' '}
               <span className="text-gradient-purple inline-block">faturamento real</span> e previsível.
             </h1>

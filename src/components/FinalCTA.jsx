@@ -19,7 +19,7 @@ export function FinalCTA() {
             O Próximo Passo do Seu Negócio
           </div>
 
-          <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.08]">
+          <h2 className="font-display text-[26px] xs:text-[32px] sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.18] sm:leading-[1.08]">
             Pronto para transformar cliques em{' '}
             <span className="text-gradient-purple block sm:inline">faturamento real?</span>
           </h2>
